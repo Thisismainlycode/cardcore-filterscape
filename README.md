@@ -5,9 +5,9 @@ A third-party modular filter for **FilterScape / Loot Filters** generated from t
 ## Current snapshot
 
 - Full item-card catalog: **3,776**
-- Owned item cards: **1,583**
-- Missing item cards: **2,193**
-- NPC cards ignored from the imported collection: **404**
+- Owned item cards: **1,593**
+- Missing item cards: **2,183**
+- NPC cards ignored from the imported collection: **409**
 - Unresolved collection entries ignored: **13**
 
 NPC cards are deliberately excluded. The generated filter only contains OSRS ground-item IDs.
@@ -31,8 +31,12 @@ the collection. Each classification exposes FilterScape's normal **Style** edito
 
 ### Cardcore: Missing Cards
 
-An optional companion module for styling items whose cards have not been obtained.
+A companion module for styling items whose cards have not been obtained.
 It exposes the same classifications as Obtained Cards.
+
+Both modules are enabled by default and every matched item remains visible. Obtained
+cards use stronger category colors and loot beams; missing cards use a quieter version
+of the same category palette.
 
 Both modules contain exclusive classifications inspired by the Iron Filter:
 

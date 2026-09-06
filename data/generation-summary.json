@@ -1,8 +1,8 @@
 {
   "catalogItemCards": 3776,
-  "ownedItemCards": 1583,
-  "missingItemCards": 2193,
-  "ignoredNpcEntries": 404,
+  "ownedItemCards": 1593,
+  "missingItemCards": 2183,
+  "ignoredNpcEntries": 409,
   "unresolvedEntries": [
     "Batta tin",
     "Crunchy tray",
@@ -22,47 +22,47 @@
     "Godly": 84,
     "Mythic": 53,
     "Legendary": 130,
-    "Epic": 255,
-    "Rare": 420,
-    "Uncommon": 515,
-    "Common": 736
+    "Epic": 253,
+    "Rare": 419,
+    "Uncommon": 512,
+    "Common": 732
   },
   "obtainedByClassification": {
     "Currency": 20,
-    "Teleports": 2,
+    "Teleports": 3,
     "Food and Potions": 64,
     "Clues and Uniques": 256,
     "Slayer and PvM": 6,
     "Runes and Magic": 41,
-    "Seeds and Farming": 42,
+    "Seeds and Farming": 44,
     "Herbs and Herblore": 39,
     "Ores and Bars": 23,
     "Logs and Planks": 31,
     "Prayer": 31,
     "Fletching": 60,
     "Crafting Materials": 41,
-    "Weapons and Ammunition": 145,
-    "Armour and Equipment": 362,
+    "Weapons and Ammunition": 146,
+    "Armour and Equipment": 364,
     "Tools and Skilling": 204,
-    "Miscellaneous": 216
+    "Miscellaneous": 220
   },
   "missingByClassification": {
     "Currency": 10,
-    "Teleports": 2,
+    "Teleports": 1,
     "Food and Potions": 54,
     "Clues and Uniques": 395,
     "Slayer and PvM": 7,
     "Runes and Magic": 54,
-    "Seeds and Farming": 82,
+    "Seeds and Farming": 80,
     "Herbs and Herblore": 58,
     "Ores and Bars": 25,
     "Logs and Planks": 45,
     "Prayer": 50,
     "Fletching": 60,
     "Crafting Materials": 49,
-    "Weapons and Ammunition": 243,
-    "Armour and Equipment": 516,
+    "Weapons and Ammunition": 242,
+    "Armour and Equipment": 514,
     "Tools and Skilling": 269,
-    "Miscellaneous": 274
+    "Miscellaneous": 270
   }
 }

@@ -38,6 +38,15 @@ CATEGORIES = [
     ("miscellaneous", "Miscellaneous"),
 ]
 
+CATEGORY_COLORS = {
+    "currency": "BEB287", "teleports": "66B2FF", "food_potions": "99FF99",
+    "clues_uniques": "FF66B2", "slayer_pvm": "FF9600", "runes_magic": "9192D3",
+    "seeds_farming": "63A755", "herblore": "A4D27E", "ores_bars": "A09A8B",
+    "logs_planks": "BDA069", "prayer": "EED11D", "fletching": "6CBBBF",
+    "crafting": "CDB5CD", "weapons_ammo": "A03A2D", "armour_equipment": "6D88A1",
+    "tools_skilling": "41A9B7", "miscellaneous": "D0D0D0",
+}
+
 
 def normalized_name(value):
     return re.sub(r"\s+", " ", str(value or "").strip().lower())
@@ -108,7 +117,10 @@ def filter_ids(cards):
 def style_lines(prefix, category_id, label, cards, obtained):
     macro = f"{prefix}_{category_id}".upper()
     ids = filter_ids(cards)
-    color = "#FF62E6A7" if obtained else "#FFFF8787"
+    rgb = CATEGORY_COLORS[category_id]
+    text = f'#{"FF" if obtained else "B3"}{rgb}'
+    background = f'#{"38" if obtained else "14"}{rgb}'
+    border = f'#{"FF" if obtained else "70"}{rgb}'
     return [
         f'/*@ define:input:cardcore_{prefix.lower()}',
         'type: style',
@@ -118,9 +130,14 @@ def style_lines(prefix, category_id, label, cards, obtained):
         '*/',
         f'#define VAR_CARDCORE_{macro}_STYLE \\',
         '  hidden = false;\\',
-        f'  textColor = "{color}";\\',
-        f'  borderColor = "{color}";\\',
+        f'  textColor = "{text}";\\',
+        f'  menuTextColor = "{text}";\\',
+        f'  backgroundColor = "{background}";\\',
+        f'  borderColor = "{border}";\\',
+        '  textAccentColor = "#FF000000";\\',
+        '  icon = CurrentItem();\\',
         f'  showLootbeam = {"true" if obtained else "false"};\\',
+        f'  lootbeamColor = "#FF{rgb}";\\',
         '  notify = false;\\',
         '  showValue = true;\\',
         f'  menuSort = {150 if obtained else 50};',
@@ -132,6 +149,7 @@ def style_lines(prefix, category_id, label, cards, obtained):
 
 
 def generate(catalog_obj, collection):
+    collection = collection.get("group", collection)
     items = catalog_obj["items"]
     by_id = {int(item["id"]): item for item in items}
     by_name = {normalized_name(item["name"]): item for item in items}
@@ -227,8 +245,7 @@ def generate(catalog_obj, collection):
         '/*@ define:module:cardcore_missing',
         '---',
         'name: "Cardcore: Missing Cards"',
-        'subtitle: "Optionally style ground items whose cards have not been obtained"',
-        'enabled: false',
+        'subtitle: "Style ground items whose cards have not been obtained"',
         'description: |',
         f'  - Missing item cards: {len(missing)}',
         '  Missing-card rules use the same classifications as Obtained Cards.',
