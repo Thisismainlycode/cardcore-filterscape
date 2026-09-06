@@ -12,22 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://cardcore-filter-builder.joshuachoffm.chatgpt.site'),
-  title: 'Cardcore Filter Builder',
-  description: 'Turn your OSRS TCG collection into a personalized FilterScape filter.',
-  openGraph: {
-    title: 'Cardcore Filter Builder',
-    description: 'Turn your OSRS TCG collection into a personalized FilterScape filter.',
-    images: ['/og.png'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Cardcore Filter Builder',
-    description: 'Turn your OSRS TCG collection into a personalized FilterScape filter.',
-    images: ['/og.png'],
-  },
-};
+export const metadata: Metadata = {title:'Cardcore Filters by Thisismain',description:'Create FilterScape and RuneLite Ground Items filters from an OSRS TCG collection.'};
 
 export default function RootLayout({
   children,

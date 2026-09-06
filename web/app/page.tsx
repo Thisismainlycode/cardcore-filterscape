@@ -1,43 +1,425 @@
 'use client';
-
-import { ChangeEvent, DragEvent, useEffect, useMemo, useState } from 'react';
-import { ArrowRight, Check, Download, FileJson, LockKeyhole, RefreshCw, UploadCloud } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  Check,
+  Clipboard,
+  Download,
+  ExternalLink,
+  LoaderCircle,
+} from 'lucide-react';
 import { compressToEncodedURIComponent } from 'lz-string';
-
-type CatalogItem = { id: number; name: string; tcg?: { variants?: { id: number }[]; tags?: { labels?: string[]; slot?: string; combatStyle?: string } } };
+type Item = {
+  id: number;
+  name: string;
+  tcg?: {
+    variants?: { id: number; name?: string }[];
+    tags?: { labels?: string[]; slot?: string; combatStyle?: string };
+  };
+};
 type Entry = { id?: number; name?: string; cardName?: string; kind?: string };
-type Result = { name: string; obtained: CatalogItem[]; missing: CatalogItem[]; npcs: number; unresolved: string[] };
-const categories = [['currency','Currency'],['teleports','Teleports'],['food_potions','Food & potions'],['clues_uniques','Clues & uniques'],['slayer_pvm','Slayer & PvM'],['runes_magic','Runes & magic'],['seeds_farming','Seeds & farming'],['herblore','Herbs & Herblore'],['ores_bars','Ores & bars'],['logs_planks','Logs & planks'],['prayer','Prayer'],['fletching','Fletching'],['crafting','Crafting materials'],['weapons_ammo','Weapons & ammunition'],['armour_equipment','Armour & equipment'],['tools_skilling','Tools & skilling'],['miscellaneous','Miscellaneous']] as const;
-const normal = (v?: string) => (v || '').trim().toLowerCase().replace(/\s+/g,' ');
-
-function classify(item: CatalogItem) {
-  const name=normal(item.name), tags=new Set(item.tcg?.tags?.labels||[]), slot=item.tcg?.tags?.slot;
-  if(tags.has('Currency'))return'currency'; if(/teleport|tablet|teletab|fairy ring|games necklace|dueling ring/.test(name))return'teleports';
-  if(/potion|brew|restore|serum|antipoison|antidote|food|cake|pie|pizza|stew|kebab|wine|beer|ale/.test(name))return'food_potions';
-  if(tags.has('Clue')||tags.has('Pet'))return'clues_uniques'; if(tags.has('Slayer'))return'slayer_pvm';
-  if(tags.has('Runecraft')||name.endsWith(' rune')||name.includes('rune essence'))return'runes_magic'; if(name.includes('seed')||tags.has('Farming'))return'seeds_farming';
-  if(tags.has('Herblore'))return'herblore'; if(name.includes('ore')||name.endsWith(' bar')||(tags.has('Mining')&&!slot))return'ores_bars';
-  if(name.includes('log')||name.includes('plank')||tags.has('Woodcutting')||tags.has('Firemaking'))return'logs_planks'; if(tags.has('Prayer'))return'prayer';
-  if(tags.has('Fletching'))return'fletching'; if(tags.has('Crafting')&&!slot)return'crafting';
-  if(tags.has('Weapon')||tags.has('Ammo')||item.tcg?.tags?.combatStyle)return'weapons_ammo'; if(tags.has('Equipment')||slot)return'armour_equipment';
-  if(tags.has('Tool')||['Agility','Construction','Cooking','Fishing','Hunter','Sailing','Smithing','Thieving'].some(t=>tags.has(t)))return'tools_skilling'; return'miscellaneous';
+type Result = {
+  name: string;
+  obtained: Item[];
+  missing: Item[];
+  npcs: number;
+  unresolved: string[];
+};
+const cats = [
+  ['currency', 'Currency'],
+  ['teleports', 'Teleports'],
+  ['food_potions', 'Food & potions'],
+  ['clues_uniques', 'Clues & uniques'],
+  ['slayer_pvm', 'Slayer & PvM'],
+  ['runes_magic', 'Runes & magic'],
+  ['seeds_farming', 'Seeds & farming'],
+  ['herblore', 'Herbs & Herblore'],
+  ['ores_bars', 'Ores & bars'],
+  ['logs_planks', 'Logs & planks'],
+  ['prayer', 'Prayer'],
+  ['fletching', 'Fletching'],
+  ['crafting', 'Crafting materials'],
+  ['weapons_ammo', 'Weapons & ammunition'],
+  ['armour_equipment', 'Armour & equipment'],
+  ['tools_skilling', 'Tools & skilling'],
+  ['miscellaneous', 'Miscellaneous'],
+] as const;
+const norm = (v?: string) =>
+  (v || '').trim().toLowerCase().replace(/\s+/g, ' ');
+function classify(i: Item) {
+  const n = norm(i.name),
+    t = new Set(i.tcg?.tags?.labels || []),
+    s = i.tcg?.tags?.slot;
+  if (t.has('Currency')) return 'currency';
+  if (/teleport|tablet|teletab|fairy ring|games necklace|dueling ring/.test(n))
+    return 'teleports';
+  if (
+    /potion|brew|restore|serum|antipoison|antidote|food|cake|pie|pizza|stew|kebab|wine|beer|ale/.test(
+      n,
+    )
+  )
+    return 'food_potions';
+  if (t.has('Clue') || t.has('Pet')) return 'clues_uniques';
+  if (t.has('Slayer')) return 'slayer_pvm';
+  if (t.has('Runecraft') || n.endsWith(' rune') || n.includes('rune essence'))
+    return 'runes_magic';
+  if (n.includes('seed') || t.has('Farming')) return 'seeds_farming';
+  if (t.has('Herblore')) return 'herblore';
+  if (n.includes('ore') || n.endsWith(' bar') || (t.has('Mining') && !s))
+    return 'ores_bars';
+  if (
+    n.includes('log') ||
+    n.includes('plank') ||
+    t.has('Woodcutting') ||
+    t.has('Firemaking')
+  )
+    return 'logs_planks';
+  if (t.has('Prayer')) return 'prayer';
+  if (t.has('Fletching')) return 'fletching';
+  if (t.has('Crafting') && !s) return 'crafting';
+  if (t.has('Weapon') || t.has('Ammo') || i.tcg?.tags?.combatStyle)
+    return 'weapons_ammo';
+  if (t.has('Equipment') || s) return 'armour_equipment';
+  if (
+    t.has('Tool') ||
+    [
+      'Agility',
+      'Construction',
+      'Cooking',
+      'Fishing',
+      'Hunter',
+      'Sailing',
+      'Smithing',
+      'Thieving',
+    ].some((x) => t.has(x))
+  )
+    return 'tools_skilling';
+  return 'miscellaneous';
 }
-const idsFor=(items:CatalogItem[])=>Array.from(new Set(items.flatMap(i=>[i.id,...(i.tcg?.variants||[]).map(v=>v.id)]))).sort((a,b)=>a-b);
-const encodeIds=(items:CatalogItem[])=>{let previous=0;return items.map(i=>i.id).sort((a,b)=>a-b).map(id=>{const delta=id-previous;previous=id;return delta.toString(36)}).join('.')};
-function styleBlock(state:'obtained'|'missing',id:string,label:string,items:CatalogItem[]){const macro=`${state}_${id}`.toUpperCase(),ids=idsFor(items),color=state==='obtained'?'#FF62E6A7':'#FFFF8787';return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${label}"\ngroup: "${label} (${items.length} cards / ${ids.length} item IDs)"\nexampleItem: "${(items[0]?.name||'Coins').replaceAll('"',"'")}"\n*/\n#define VAR_CARDCORE_${macro}_STYLE \\\n+  hidden = false;\\\n+  textColor = "${color}";\\\n+  borderColor = "${color}";\\\n+  showLootbeam = ${state==='obtained'?'true':'false'};\\\n+  notify = false;\\\n+  showValue = true;\\\n+  menuSort = ${state==='obtained'?150:50};\n\n#define CONST_CARDCORE_${macro}_IDS [${ids.join(',')}]\nrule (id:CONST_CARDCORE_${macro}_IDS) { VAR_CARDCORE_${macro}_STYLE }`;}
-function createFilter(r:Result){const safe=r.name.replaceAll('"',"'");const blocks=(state:'obtained'|'missing',items:CatalogItem[])=>categories.map(([id,label])=>styleBlock(state,id,label,items.filter(i=>classify(i)===id))).join('\n\n');return `/*@ define:module:cardcore_overrides\nname: "Cardcore: Manual Overrides"\nsubtitle: "One-off rules evaluated before collection rules"\n*/\n\nmeta {\n  name = "Cardcore - ${safe}";\n  description = "Personalized Cardcore filter generated locally from an OSRS TCG collection.";\n}\n\n/*@ define:input:cardcore_overrides\ntype: stringlist\ngroup: "Always Highlight"\nlabel: Items\n*/\n#define VAR_CARDCORE_ALWAYS_HIGHLIGHT []\n\n/*@ define:input:cardcore_overrides\ntype: style\ngroup: "Always Highlight"\nlabel: Style\nexampleItem: "Abyssal whip"\n*/\n#define VAR_CARDCORE_ALWAYS_HIGHLIGHT_STYLE hidden = false; textColor = "#FFFFD166"; borderColor = "#FFFFD166"; showLootbeam = true; notify = true; showValue = true; menuSort = 200;\n\nrule (name:VAR_CARDCORE_ALWAYS_HIGHLIGHT) { VAR_CARDCORE_ALWAYS_HIGHLIGHT_STYLE }\n\n/*@ define:module:cardcore_obtained\nname: "Cardcore: Obtained Cards"\nsubtitle: "${r.obtained.length} cards unlocked by this collection"\ndescription: |\n  These ground items are permitted by cards in the imported collection.\n  NPC cards and unresolved entries are excluded.\n*/\n\n${blocks('obtained',r.obtained)}\n\n/*@ define:module:cardcore_missing\nname: "Cardcore: Missing Cards"\nsubtitle: "${r.missing.length} cards not yet obtained"\nenabled: false\ndescription: |\n  Optional styling for ground items whose cards are still missing.\n*/\n\n${blocks('missing',r.missing)}\n`;}
-
-export default function Home(){const[catalog,setCatalog]=useState<CatalogItem[]>([]),[result,setResult]=useState<Result|null>(null),[error,setError]=useState(''),[dragging,setDragging]=useState(false);
-useEffect(()=>{fetch('/data/catalog.json').then(r=>r.json()).then(d=>setCatalog(d.items)).catch(()=>setError('The Cardcore catalog could not be loaded.'));},[]);
-const processText=(text:string)=>{try{const c=JSON.parse(text.trim().replace(/^```(?:json)?/i,'').replace(/```$/,'').trim()),entries:Entry[]=c.cardEntries;if(!Array.isArray(entries))throw new Error('This does not look like an OSRS TCG collection export.');if(!catalog.length)throw new Error('The Cardcore catalog is still loading. Try again in a moment.');const byId=new Map(catalog.map(i=>[i.id,i])),byName=new Map(catalog.map(i=>[normal(i.name),i])),owned=new Set<number>(),unresolved:string[]=[];let npcs=0;entries.forEach(e=>{if(e.kind==='npc'){npcs++;return;}const item=(typeof e.id==='number'?byId.get(e.id):undefined)||byName.get(normal(e.name||e.cardName));if(item)owned.add(item.id);else unresolved.push(e.name||e.cardName||String(e.id||'Unknown card'));});setResult({name:c.name||'My Collection',obtained:catalog.filter(i=>owned.has(i.id)),missing:catalog.filter(i=>!owned.has(i.id)),npcs,unresolved});setError('');}catch(e){setResult(null);setError(e instanceof Error?e.message:'Could not read this collection.');}};
-useEffect(()=>{const context=(document as unknown as {modelContext?:{registerTool:(tool:unknown,options?:{signal?:AbortSignal})=>void|Promise<void>}}).modelContext;if(!context?.registerTool)return;const lifecycle=new AbortController();void Promise.resolve(context.registerTool({name:'stage_cardcore_collection',title:'Import Cardcore collection',description:'Parse an OSRS TCG collection JSON export and update the visible obtained and missing card results.',inputSchema:{type:'object',properties:{collectionJson:{type:'string'}},required:['collectionJson'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:true},execute(input:unknown){const value=(input as {collectionJson?:unknown})?.collectionJson;if(typeof value!=='string')throw new Error('collectionJson must be a JSON string');const parsed=JSON.parse(value);if(!Array.isArray(parsed.cardEntries))throw new Error('Collection JSON must contain cardEntries');processText(value);return{status:'processed',collectionName:parsed.name||'My Collection',entryCount:parsed.cardEntries.length};}},{signal:lifecycle.signal})).catch(()=>{});return()=>lifecycle.abort();},[catalog]);
-const onFile=(file?:File)=>{if(!file)return;const reader=new FileReader();reader.onload=()=>processText(String(reader.result));reader.readAsText(file);};const onDrop=(e:DragEvent<HTMLLabelElement>)=>{e.preventDefault();setDragging(false);onFile(e.dataTransfer.files[0]);};
-const download=()=>{if(!result)return;const blob=new Blob([createFilter(result)],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${result.name.replace(/[^a-z0-9_-]+/gi,'-').toLowerCase()||'cardcore'}-cardcore.rs2f`;a.click();URL.revokeObjectURL(a.href);};
-const openInFilterScape=()=>{if(!result)return;const filterUrl=new URL('/api/filter',window.location.origin);filterUrl.searchParams.set('ids',encodeIds(result.obtained));filterUrl.searchParams.set('name',result.name.slice(0,80));const importData=compressToEncodedURIComponent(JSON.stringify({filterUrl:filterUrl.toString(),config:{enabledModules:{},inputConfigs:{}}}));window.location.href=`https://filterscape.xyz/import?importData=${importData}`;};
-const counts=useMemo(()=>result?categories.map(([id,label])=>({id,label,obtained:result.obtained.filter(i=>classify(i)===id).length,missing:result.missing.filter(i=>classify(i)===id).length})):[],[result]);
-return <main className="min-h-screen px-5 py-6 sm:px-8 lg:px-12"><div className="mx-auto max-w-6xl"><header className="flex items-center justify-between border-b border-white/10 pb-5"><div className="flex items-center gap-3"><div className="logo-mark">CC</div><div><p className="eyebrow">OSRS TCG utility</p><p className="font-semibold tracking-tight">Cardcore Filter Builder</p></div></div><div className="privacy-pill"><LockKeyhole size={14}/> Runs locally</div></header>
-<section className="grid gap-8 py-10 lg:grid-cols-[1.08fr_.92fr] lg:items-start"><div><p className="eyebrow text-mint">Collection → permission filter</p><h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-.04em] sm:text-6xl">Make your unlocks impossible to miss.</h1><p className="mt-5 max-w-xl text-base leading-7 text-slate-400">Import your current OSRS TCG collection. We’ll separate obtained and missing item cards, classify them, and generate a personalized FilterScape filter.</p>
-{!result?<label onDragOver={e=>{e.preventDefault();setDragging(true)}} onDragLeave={()=>setDragging(false)} onDrop={onDrop} className={`drop-zone mt-8 ${dragging?'dragging':''}`}><input type="file" accept=".json,application/json,text/plain" className="sr-only" onChange={(e:ChangeEvent<HTMLInputElement>)=>onFile(e.target.files?.[0])}/><UploadCloud size={28}/><div><p className="font-semibold">Drop your collection export here</p><p className="mt-1 text-sm text-slate-400">or click to choose a JSON file</p></div><span className="choose-button">Choose file</span></label>:<div className="mt-8 flex flex-wrap gap-3"><button className="primary-button" onClick={openInFilterScape}><ArrowRight size={18}/>Continue in FilterScape</button><button className="secondary-button" onClick={download}><Download size={16}/>Download .rs2f</button><label className="secondary-button"><RefreshCw size={16}/>Update collection<input type="file" accept=".json,application/json,text/plain" className="sr-only" onChange={e=>onFile(e.target.files?.[0])}/></label></div>}
-{error&&<p role="alert" className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200">{error}</p>}<div className="mt-6 flex items-center gap-2 text-xs text-slate-500"><LockKeyhole size={13}/><span>Your collection never leaves this browser.</span></div></div>
-<aside className="panel">{!result?<div className="empty-state"><FileJson size={34}/><p className="mt-4 font-semibold text-slate-200">Waiting for a collection</p><p className="mt-2 max-w-xs text-center text-sm leading-6 text-slate-500">Your obtained and missing card totals will appear here before anything is downloaded.</p></div>:<><div className="flex items-start justify-between gap-4"><div><p className="eyebrow">Imported collection</p><h2 className="mt-1 text-2xl font-semibold tracking-tight">{result.name}</h2></div><span className="success-badge"><Check size={14}/>Ready</span></div><div className="mt-6 grid grid-cols-2 gap-3"><div className="metric obtained"><span>Obtained</span><strong>{result.obtained.length.toLocaleString()}</strong></div><div className="metric missing"><span>Missing</span><strong>{result.missing.length.toLocaleString()}</strong></div></div><div className="mt-4 grid grid-cols-2 gap-3 text-sm"><div className="submetric"><span>NPCs excluded</span><strong>{result.npcs}</strong></div><div className="submetric"><span>Needs review</span><strong>{result.unresolved.length}</strong></div></div><div className="mt-6 border-t border-white/10 pt-5"><div className="mb-3 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-500"><span>Classification</span><span>Obt. / Miss.</span></div><div className="classification-list">{counts.map(row=><div key={row.id}><span>{row.label}</span><span><b>{row.obtained}</b> / {row.missing}</span></div>)}</div></div></>}</aside></section>
-<section className="steps"><div><span>01</span><h3>Import collection</h3><p>Your latest JSON export becomes the source of truth.</p></div><ArrowRight className="step-arrow"/><div><span>02</span><h3>Download .rs2f</h3><p>Obtained and missing cards are classified independently.</p></div><ArrowRight className="step-arrow"/><div><span>03</span><h3>Open FilterScape</h3><p>Import the downloaded file, style each category, and export.</p><a href="https://filterscape.xyz" target="_blank" rel="noreferrer">Go to FilterScape <ArrowRight size={14}/></a></div></section></div></main>}
+const ids = (a: Item[]) =>
+  Array.from(
+    new Set(
+      a.flatMap((i) => [i.id, ...(i.tcg?.variants || []).map((v) => v.id)]),
+    ),
+  ).sort((a, b) => a - b);
+const names = (a: Item[]) =>
+  Array.from(
+    new Set(
+      a.flatMap((i) =>
+        [i.name, ...(i.tcg?.variants || []).map((v) => v.name)].filter(
+          (x): x is string => !!x?.trim(),
+        ),
+      ),
+    ),
+  )
+    .sort((a, b) => a.localeCompare(b))
+    .join(', ');
+function block(
+  state: 'obtained' | 'missing',
+  id: string,
+  label: string,
+  a: Item[],
+) {
+  const m = `${state}_${id}`.toUpperCase(),
+    list = ids(a),
+    c = state === 'obtained' ? '#FF62E6A7' : '#FFFF8787';
+  return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${label}"\ngroup: "${label} (${a.length} cards / ${list.length} item IDs)"\nexampleItem: "${(a[0]?.name || 'Coins').replaceAll('"', "'")}"\n*/\n#define VAR_CARDCORE_${m}_STYLE \\\n++ hidden = false;\\\n++ textColor = "${c}";\\\n++ borderColor = "${c}";\\\n++ showLootbeam = ${state === 'obtained'};\\\n++ notify = false;\\\n++ showValue = true;\\\n++ menuSort = ${state === 'obtained' ? 150 : 50};\n\n#define CONST_CARDCORE_${m}_IDS [${list.join(',')}]\nrule (id:CONST_CARDCORE_${m}_IDS) { VAR_CARDCORE_${m}_STYLE }`;
+}
+function makeFilter(r: Result) {
+  const groups = (s: 'obtained' | 'missing', a: Item[]) =>
+    cats
+      .map(([id, l]) =>
+        block(
+          s,
+          id,
+          l,
+          a.filter((i) => classify(i) === id),
+        ),
+      )
+      .join('\n\n');
+  return `/*@ define:module:cardcore_obtained\nname: "Cardcore: Obtained Cards"\nsubtitle: "${r.obtained.length} cards unlocked"\n*/\n\nmeta { name = "Cardcore - ${r.name.replaceAll('"', "'")}"; description = "Generated by Cardcore Filters by Thisismain."; }\n\n${groups('obtained', r.obtained)}\n\n/*@ define:module:cardcore_missing\nname: "Cardcore: Missing Cards"\nsubtitle: "${r.missing.length} cards not yet obtained"\nenabled: false\n*/\n\n${groups('missing', r.missing)}\n`;
+}
+const createFilter = (result: Result) =>
+  makeFilter(result).replaceAll('\\n++ ', '\\n  ');
+export default function Home() {
+  const [catalog, setCatalog] = useState<Item[]>([]),
+    [result, setResult] = useState<Result | null>(null),
+    [error, setError] = useState(''),
+    [text, setText] = useState(''),
+    [mode, setMode] = useState<'solo' | 'group'>('solo'),
+    [user, setUser] = useState(''),
+    [loading, setLoading] = useState(false),
+    [kind, setKind] = useState<'obtained' | 'missing'>('obtained'),
+    [copied, setCopied] = useState(false);
+  useEffect(() => {
+    fetch('/data/catalog.json')
+      .then((r) => r.json())
+      .then((d) => setCatalog(d.items))
+      .catch(() => setError('The item catalog could not be loaded.'));
+  }, []);
+  const url = `https://osrs-tcg.net/api/v1/players/${encodeURIComponent(user.trim() || 'YOUR_USERNAME')}${mode === 'group' ? '/group' : ''}`;
+  const process = (value = text) => {
+    try {
+      const raw = JSON.parse(
+          value
+            .trim()
+            .replace(/^```(?:json)?/i, '')
+            .replace(/```$/, '')
+            .trim(),
+        ),
+        c = raw.group ?? raw,
+        e: Entry[] = c.cardEntries;
+      if (!Array.isArray(e))
+        throw Error('No cardEntries were found. Copy the complete data page.');
+      if (!catalog.length) throw Error('The item catalog is still loading.');
+      const byId = new Map(catalog.map((i) => [i.id, i])),
+        byName = new Map(catalog.map((i) => [norm(i.name), i])),
+        owned = new Set<number>(),
+        unresolved: string[] = [];
+      let npcs = 0;
+      e.forEach((x) => {
+        if (x.kind === 'npc') {
+          npcs++;
+          return;
+        }
+        const item =
+          (typeof x.id === 'number' ? byId.get(x.id) : undefined) ||
+          byName.get(norm(x.name || x.cardName));
+        item
+          ? owned.add(item.id)
+          : unresolved.push(x.name || x.cardName || String(x.id || 'Unknown'));
+      });
+      setResult({
+        name: c.displayName || c.name || 'My Collection',
+        obtained: catalog.filter((i) => owned.has(i.id)),
+        missing: catalog.filter((i) => !owned.has(i.id)),
+        npcs,
+        unresolved,
+      });
+      setError('');
+    } catch (e) {
+      setResult(null);
+      setError(
+        e instanceof Error ? e.message : 'Could not read this collection.',
+      );
+    }
+  };
+  const load = async () => {
+    if (!user.trim()) {
+      setError('Enter your OSRS username first.');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const r = await fetch(url);
+      if (!r.ok) throw Error();
+      const v = await r.text();
+      setText(v);
+      process(v);
+    } catch {
+      setError(
+        'Direct loading was blocked. Use “Open data”, copy the page, and paste it below.',
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+  const list = result
+      ? kind === 'obtained'
+        ? result.obtained
+        : result.missing
+      : [],
+    ground = useMemo(() => names(list), [list]);
+  const copy = async () => {
+    await navigator.clipboard.writeText(ground);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+  const download = () => {
+    if (!result) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(
+      new Blob([createFilter(result)], { type: 'text/plain' }),
+    );
+    a.download = `${result.name.replace(/[^a-z0-9_-]+/gi, '-').toLowerCase()}-cardcore.rs2f`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+  const open = () => {
+    if (!result) return;
+    const filterUrl = `data:text/plain;charset=utf-8,${encodeURIComponent(createFilter(result))}`,
+      importData = compressToEncodedURIComponent(
+        JSON.stringify({
+          filterUrl,
+          config: { enabledModules: {}, inputConfigs: {} },
+        }),
+      );
+    location.href = `https://filterscape.xyz/import?importData=${importData}`;
+  };
+  const counts = useMemo(
+    () =>
+      result
+        ? cats.map(([id, label]) => ({
+            id,
+            label,
+            o: result.obtained.filter((i) => classify(i) === id).length,
+            m: result.missing.filter((i) => classify(i) === id).length,
+          }))
+        : [],
+    [result],
+  );
+  return (
+    <main>
+      <div className="shell">
+        <header>
+          <div>
+            <h1>Cardcore Filters</h1>
+            <p>
+              by <a href="https://github.com/Thisismainlycode">Thisismain</a>
+            </p>
+          </div>
+          <span>Runs in your browser</span>
+        </header>
+        <section className="card">
+          <h2>Import cards</h2>
+          <div className="row">
+            <div className="switch">
+              <button
+                className={mode === 'solo' ? 'active' : ''}
+                onClick={() => setMode('solo')}
+              >
+                Solo
+              </button>
+              <button
+                className={mode === 'group' ? 'active' : ''}
+                onClick={() => setMode('group')}
+              >
+                Group
+              </button>
+            </div>
+            <input
+              className="username"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+              placeholder="OSRS username"
+            />
+            <button className="primary" onClick={load}>
+              {loading && <LoaderCircle className="spin" size={15} />}Load cards
+            </button>
+            <a
+              className="button"
+              href={user.trim() ? url : undefined}
+              aria-disabled={!user.trim()}
+              target="_blank"
+            >
+              Open data <ExternalLink size={14} />
+            </a>
+          </div>
+          <p className="help">
+            Try <b>Load cards</b>. If blocked, open the data page, copy
+            everything, and paste it here.
+          </p>
+          <textarea
+            className="import-box"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Paste collection JSON…"
+          />
+          <div className="under">
+            <button
+              className="button"
+              disabled={!text.trim()}
+              onClick={() => process()}
+            >
+              Import pasted data
+            </button>
+            <code>{url}</code>
+          </div>
+          {error && <p className="error">{error}</p>}
+        </section>
+        {result && (
+          <>
+            <section className="summary">
+              <div>
+                <span>Collection</span>
+                <strong>{result.name}</strong>
+              </div>
+              <div>
+                <span>Obtained</span>
+                <strong className="green">{result.obtained.length}</strong>
+              </div>
+              <div>
+                <span>Missing</span>
+                <strong className="red">{result.missing.length}</strong>
+              </div>
+              <div>
+                <span>NPCs excluded</span>
+                <strong>{result.npcs}</strong>
+              </div>
+            </section>
+            <div className="outputs">
+              <section className="card">
+                <h2>FilterScape</h2>
+                <p>Separate Obtained and Missing classifications.</p>
+                <div className="actions">
+                  <button className="primary" onClick={open}>
+                    Open in FilterScape <ExternalLink size={15} />
+                  </button>
+                  <button className="button" onClick={download}>
+                    <Download size={15} /> Download .rs2f
+                  </button>
+                </div>
+              </section>
+              <section className="card">
+                <div className="section-head">
+                  <div>
+                    <h2>Ground Items</h2>
+                    <p>Paste into RuneLite’s highlighted items list.</p>
+                  </div>
+                  <div className="switch small">
+                    <button
+                      className={kind === 'obtained' ? 'active' : ''}
+                      onClick={() => setKind('obtained')}
+                    >
+                      Obtained
+                    </button>
+                    <button
+                      className={kind === 'missing' ? 'active' : ''}
+                      onClick={() => setKind('missing')}
+                    >
+                      Missing
+                    </button>
+                  </div>
+                </div>
+                <textarea className="output-box" readOnly value={ground} />
+                <button className="primary copy" onClick={copy}>
+                  {copied ? <Check size={15} /> : <Clipboard size={15} />}{' '}
+                  {copied ? 'Copied' : 'Copy comma-separated list'}
+                </button>
+              </section>
+            </div>
+            <details className="card details">
+              <summary>Classification counts</summary>
+              <div className="class-grid">
+                {counts.map((x) => (
+                  <div key={x.id}>
+                    <span>{x.label}</span>
+                    <span>
+                      <b>{x.o}</b> / {x.m}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              {result.unresolved.length > 0 && (
+                <p>{result.unresolved.length} entries could not be matched.</p>
+              )}
+            </details>
+          </>
+        )}
+        <footer>
+          Cardcore Filters by Thisismain · No collection data is stored.
+        </footer>
+      </div>
+    </main>
+  );
+}
