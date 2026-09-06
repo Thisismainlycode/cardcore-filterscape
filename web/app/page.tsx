@@ -7,7 +7,6 @@ import {
   ExternalLink,
   LoaderCircle,
 } from 'lucide-react';
-import { compressToEncodedURIComponent } from 'lz-string';
 type Item = {
   id: number;
   name: string;
@@ -148,6 +147,7 @@ export default function Home() {
     [mode, setMode] = useState<'solo' | 'group'>('solo'),
     [user, setUser] = useState(''),
     [loading, setLoading] = useState(false),
+    [filterLoading, setFilterLoading] = useState(false),
     [kind, setKind] = useState<'obtained' | 'missing'>('obtained'),
     [copied, setCopied] = useState(false);
   useEffect(() => {
@@ -245,16 +245,44 @@ export default function Home() {
     a.click();
     URL.revokeObjectURL(a.href);
   };
-  const open = () => {
+  const open = async () => {
     if (!result) return;
-    const filterUrl = `data:text/plain;charset=utf-8,${encodeURIComponent(createFilter(result))}`,
-      importData = compressToEncodedURIComponent(
-        JSON.stringify({
-          filterUrl,
+    setFilterLoading(true);
+    setError('');
+    try {
+      const rs2f = createFilter(result);
+      const hashBuffer = await crypto.subtle.digest(
+        'SHA-1',
+        new TextEncoder().encode(rs2f),
+      );
+      const expectedRs2fHash = Array.from(new Uint8Array(hashBuffer))
+        .map((byte) => byte.toString(16).padStart(2, '0'))
+        .join('');
+      const response = await fetch('https://api.kaqemeex.net/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          filter: {
+            rs2f,
+            expectedRs2fHash,
+            sourceUrl: window.location.href,
+          },
           config: { enabledModules: {}, inputConfigs: {} },
         }),
+      });
+      if (!response.ok) throw new Error('FilterScape rejected the filter.');
+      const data = await response.json();
+      const filterId = data?.response?.id;
+      if (!filterId) throw new Error('FilterScape did not return an import ID.');
+      window.location.href = `https://filterscape.xyz/import?filterId=${encodeURIComponent(filterId)}`;
+    } catch (e) {
+      setError(
+        e instanceof Error
+          ? `${e.message} You can still use “Download .rs2f”.`
+          : 'Could not create the FilterScape import. You can still download the .rs2f file.',
       );
-    location.href = `https://filterscape.xyz/import?importData=${importData}`;
+      setFilterLoading(false);
+    }
   };
   const counts = useMemo(
     () =>
@@ -362,8 +390,9 @@ export default function Home() {
                 <h2>FilterScape</h2>
                 <p>Separate Obtained and Missing classifications.</p>
                 <div className="actions">
-                  <button className="primary" onClick={open}>
-                    Open in FilterScape <ExternalLink size={15} />
+                  <button className="primary" onClick={open} disabled={filterLoading}>
+                    {filterLoading ? <LoaderCircle className="spin" size={15} /> : <ExternalLink size={15} />}
+                    {filterLoading ? 'Preparing…' : 'Open in FilterScape'}
                   </button>
                   <button className="button" onClick={download}>
                     <Download size={15} /> Download .rs2f
