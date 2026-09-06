@@ -151,7 +151,7 @@ export default function Home() {
     [kind, setKind] = useState<'obtained' | 'missing'>('obtained'),
     [copied, setCopied] = useState(false);
   useEffect(() => {
-    fetch('/data/catalog.json')
+      fetch('./data/catalog.json')
       .then((r) => r.json())
       .then((d) => setCatalog(d.items))
       .catch(() => setError('The item catalog could not be loaded.'));
