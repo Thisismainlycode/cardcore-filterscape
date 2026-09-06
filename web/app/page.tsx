@@ -165,14 +165,21 @@ function block(
     text = state === 'obtained' ? `#FF${rgb}` : `#B3${rgb}`,
     background = state === 'obtained' ? `#38${rgb}` : `#14${rgb}`,
     border = state === 'obtained' ? `#FF${rgb}` : `#70${rgb}`;
-  return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${label}"\ngroup: "${label} (${a.length} cards / ${list.length} item IDs)"\nexampleItem: "${(a[0]?.name || 'Coins').replaceAll('"', "'")}"\nexampleItemId: ${a[0]?.id || 995}\n*/\n#define VAR_CARDCORE_${m}_STYLE \\\n++ hidden = false;\\\n++ textColor = "${text}";\\\n++ menuTextColor = "${text}";\\\n++ backgroundColor = "${background}";\\\n++ borderColor = "${border}";\\\n++ textAccentColor = "#FF000000";\\\n++ icon = CurrentItem();\\\n++ showLootbeam = ${state === 'obtained'};\\\n++ lootbeamColor = "#FF${rgb}";\\\n++ notify = false;\\\n++ showValue = true;\\\n++ menuSort = ${state === 'obtained' ? 150 : 50};\n\n#define CONST_CARDCORE_${m}_IDS [${list.join(',')}]\nrule (id:CONST_CARDCORE_${m}_IDS) { VAR_CARDCORE_${m}_STYLE }`;
+  return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${label}"\ngroup: "${label} (${a.length} cards / ${list.length} item IDs)"\nexampleItem: "${(a[0]?.name || 'Coins').replaceAll('"', "'")}"\nexampleItemId: ${a[0]?.id || 995}\n*/\n#define VAR_CARDCORE_${m}_STYLE \\\n++ hidden = false;\\\n++ textColor = "${text}";\\\n++ menuTextColor = "${text}";\\\n++ backgroundColor = "${background}";\\\n++ borderColor = "${border}";\\\n++ textAccentColor = "#FF000000";\\\n++ icon = CurrentItem();\\\n++ showLootbeam = ${state === 'obtained' && (id === 'slayer_pvm' || id === 'clues_uniques')};\\\n++ lootbeamColor = "#FF${rgb}";\\\n++ notify = false;\\\n++ showValue = false;\\\n++ menuSort = ${state === 'obtained' ? 150 : 50};\n\n#define CONST_CARDCORE_${m}_IDS [${list.join(',')}]\nrule (id:CONST_CARDCORE_${m}_IDS) { VAR_CARDCORE_${m}_STYLE }`;
 }
 function individualBlocks(state: 'obtained' | 'missing', items: Item[], styles: ReferenceStyle[]) {
   const available = new Map(items.map((item) => [item.id, item]));
   return styles.filter((entry) => available.has(entry.itemId)).map((entry) => {
     const item = available.get(entry.itemId)!;
     const key = `${state}_${entry.itemId}`.toUpperCase();
-    const properties = { hidden: 'false', icon: 'CurrentItem()', ...entry.style };
+    const category = classify(item);
+    const properties = {
+      hidden: 'false',
+      icon: 'CurrentItem()',
+      ...entry.style,
+      showLootbeam: String(state === 'obtained' && (category === 'slayer_pvm' || category === 'clues_uniques')),
+      showValue: 'false',
+    };
     const body = Object.entries(properties).map(([name, value]) => `++ ${name} = ${value};\\`).join('\n');
     return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${entry.label.replaceAll('"', "'")}"\ngroup: "Individual: ${entry.group.replaceAll('"', "'")}"\nexampleItem: "${item.name.replaceAll('"', "'")}"\nexampleItemId: ${item.id}\n*/\n#define VAR_CARDCORE_INDIVIDUAL_${key} \\\n${body.slice(0, -1)}\n\n#define CONST_CARDCORE_INDIVIDUAL_${key}_IDS [${ids([item]).join(',')}]\nrule (id:CONST_CARDCORE_INDIVIDUAL_${key}_IDS) { VAR_CARDCORE_INDIVIDUAL_${key} }`;
   }).join('\n\n');
