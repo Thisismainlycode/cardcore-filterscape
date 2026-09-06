@@ -1,6 +1,8 @@
 # Cardcore FilterScape Community Filter
 
-A third-party modular filter for **FilterScape / Loot Filters** generated from the **Pack Bros** OSRS TCG/Cardcore collection.
+A third-party Cardcore filter builder for **FilterScape / Loot Filters** and RuneLite's **Ground Items** plugin.
+
+Use the public builder at **https://thisismainlycode.github.io/cardcore-filterscape/**.
 
 ## Current snapshot
 
@@ -12,15 +14,7 @@ A third-party modular filter for **FilterScape / Loot Filters** generated from t
 
 NPC cards are deliberately excluded. The generated filter only contains OSRS ground-item IDs.
 
-## Repository privacy and FilterScape distribution
-
-This is the private development/backend repository. Keep the generator, source data,
-and development history private.
-
-FilterScape users cannot import the raw URL from a private GitHub repository without
-authentication. If public URL import is needed later, publish only the generated
-`filter.rs2f` (and optionally a short README) from a separate public distribution
-repository. Do not publish collection exports or backend data there.
+The builder runs entirely in the browser and does not store pasted collection data.
 
 ## Modules
 
@@ -37,6 +31,16 @@ It exposes the same classifications as Obtained Cards.
 Both modules are enabled by default and every matched item remains visible. Obtained
 cards use stronger category colors and loot beams; missing cards use a quieter version
 of the same category palette.
+
+The modules also include 116 Cardcore-compatible individual item styles drawn from
+the public `p8pw9l` reference filter. FilterScape displays these only for relevant
+items and exposes them as separate style controls.
+
+## Collection difference
+
+The builder can compare two solo or group collection exports. It returns items found
+in the second collection but missing from the first as a comma-separated Ground Items
+list, including catalog variants.
 
 Both modules contain exclusive classifications inspired by the Iron Filter:
 

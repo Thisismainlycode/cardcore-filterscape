@@ -1,0 +1,1520 @@
+{
+  "source": "https://api.kaqemeex.net/filter/p8pw9l",
+  "styles": [
+    {
+      "itemId": 2361,
+      "itemName": "Adamantite bar",
+      "label": "Adamantite bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50485A48\"",
+        "borderColor": "\"#FF485A48\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF485A48\""
+      }
+    },
+    {
+      "itemId": 2349,
+      "itemName": "Bronze bar",
+      "label": "Bronze bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50554127\"",
+        "borderColor": "\"#FF554127\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF554127\""
+      }
+    },
+    {
+      "itemId": 2357,
+      "itemName": "Gold bar",
+      "label": "Gold bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50CBA618\"",
+        "borderColor": "\"#FFCBA618\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFCBA618\""
+      }
+    },
+    {
+      "itemId": 2351,
+      "itemName": "Iron bar",
+      "label": "Iron bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504C4545\"",
+        "borderColor": "\"#FF4C4545\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF4C4545\""
+      }
+    },
+    {
+      "itemId": 13354,
+      "itemName": "Lovakite bar",
+      "label": "Lovakite bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#505E1409\"",
+        "borderColor": "\"#FF5E1409\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF5E1409\""
+      }
+    },
+    {
+      "itemId": 2359,
+      "itemName": "Mithril bar",
+      "label": "Mithril bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50484869\"",
+        "borderColor": "\"#FF484869\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF484869\""
+      }
+    },
+    {
+      "itemId": 2363,
+      "itemName": "Runite bar",
+      "label": "Runite bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504B6570\"",
+        "borderColor": "\"#FF4B6570\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF4B6570\""
+      }
+    },
+    {
+      "itemId": 2355,
+      "itemName": "Silver bar",
+      "label": "Silver bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#509C9CA7\"",
+        "borderColor": "\"#FF9C9CA7\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF9C9CA7\""
+      }
+    },
+    {
+      "itemId": 2353,
+      "itemName": "Steel bar",
+      "label": "Steel bar custom style",
+      "group": "Bars Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50887E7E\"",
+        "borderColor": "\"#FF887E7E\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF887E7E\""
+      }
+    },
+    {
+      "itemId": 2446,
+      "itemName": "Antipoison",
+      "label": "Antipoison custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50A4D27E\"",
+        "borderColor": "\"#FFA4D27E\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFA4D27E\""
+      }
+    },
+    {
+      "itemId": 20908,
+      "itemName": "Buchu leaf",
+      "label": "Buchu leaf custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#505A4173\"",
+        "borderColor": "\"#FFD12C18\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFD12C18\""
+      }
+    },
+    {
+      "itemId": 20885,
+      "itemName": "Cavern grubs",
+      "label": "Cavern grubs custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#509f7756\"",
+        "borderColor": "\"#FF9f7756\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFcfbbaa\""
+      }
+    },
+    {
+      "itemId": 20912,
+      "itemName": "Cicely",
+      "label": "Cicely custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50a48aa8\"",
+        "borderColor": "\"#FFa48aa8\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFa48aa8\""
+      }
+    },
+    {
+      "itemId": 20920,
+      "itemName": "Elder potion",
+      "label": "Elder potion custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50845B5C\"",
+        "borderColor": "\"#FF845B5C\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF845B5C\""
+      }
+    },
+    {
+      "itemId": 20911,
+      "itemName": "Endarkened juice",
+      "label": "Endarkened juice custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#507539e0\"",
+        "borderColor": "\"#FF7539e0\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF7539e0\""
+      }
+    },
+    {
+      "itemId": 20905,
+      "itemName": "Golpar",
+      "label": "Golpar custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#505D4477\"",
+        "borderColor": "\"#FF1ADFA2\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF1ADFA2\""
+      }
+    },
+    {
+      "itemId": 20944,
+      "itemName": "Kodai potion",
+      "label": "Kodai potion custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#507288A8\"",
+        "borderColor": "\"#FF7288A8\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF7288A8\""
+      }
+    },
+    {
+      "itemId": 21036,
+      "itemName": "Mallignum root plank",
+      "label": "Mallignum root plank custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50484320\"",
+        "borderColor": "\"#FF484320\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFb2b099\""
+      }
+    },
+    {
+      "itemId": 20902,
+      "itemName": "Noxifer",
+      "label": "Noxifer custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#505B4275\"",
+        "borderColor": "\"#FFD3B4FC\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFD3B4FC\""
+      }
+    },
+    {
+      "itemId": 20988,
+      "itemName": "Overload",
+      "label": "Overload custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50130F0F\"",
+        "borderColor": "\"#FF130F0F\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF130F0F\""
+      }
+    },
+    {
+      "itemId": 20968,
+      "itemName": "Prayer enhance",
+      "label": "Prayer enhance custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#509257BA\"",
+        "borderColor": "\"#FF9257BA\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF9257BA\""
+      }
+    },
+    {
+      "itemId": 20956,
+      "itemName": "Revitalisation potion",
+      "label": "Revitalisation potion custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50A56785\"",
+        "borderColor": "\"#FFA56785\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFed89b5\""
+      }
+    },
+    {
+      "itemId": 20910,
+      "itemName": "Stinkhorn mushroom",
+      "label": "Stinkhorn mushroom custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#506d3532\"",
+        "borderColor": "\"#FF6d3532\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF6d3532\""
+      }
+    },
+    {
+      "itemId": 20932,
+      "itemName": "Twisted potion",
+      "label": "Twisted potion custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50657E69\"",
+        "borderColor": "\"#FF657E69\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF657E69\""
+      }
+    },
+    {
+      "itemId": 20980,
+      "itemName": "Xeric's aid",
+      "label": "Xeric's aid custom style",
+      "group": "Chambers of Xeric Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50AFAC73\"",
+        "borderColor": "\"#FFE7E6D5\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFf7f84d\""
+      }
+    },
+    {
+      "itemId": 13441,
+      "itemName": "Anglerfish",
+      "label": "Anglerfish custom style",
+      "group": "Fish Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50624b18\"",
+        "borderColor": "\"#FF624b18\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFffd480\""
+      }
+    },
+    {
+      "itemId": 11936,
+      "itemName": "Dark crab",
+      "label": "Dark crab custom style",
+      "group": "Fish Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504a5e4b\"",
+        "borderColor": "\"#FF4a5e4b\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF9aff90\""
+      }
+    },
+    {
+      "itemId": 391,
+      "itemName": "Manta ray",
+      "label": "Manta ray custom style",
+      "group": "Fish Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5069503a\"",
+        "borderColor": "\"#FF69503a\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFffc38d\""
+      }
+    },
+    {
+      "itemId": 7946,
+      "itemName": "Monkfish",
+      "label": "Monkfish custom style",
+      "group": "Fish Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50AF8F51\"",
+        "borderColor": "\"#FF7F623A\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF7F623A\""
+      }
+    },
+    {
+      "itemId": 397,
+      "itemName": "Sea turtle",
+      "label": "Sea turtle custom style",
+      "group": "Fish Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50b7977c\"",
+        "borderColor": "\"#FFb7977c\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFb7977c\""
+      }
+    },
+    {
+      "itemId": 23673,
+      "itemName": "Crystal axe",
+      "label": "Crystal axe custom style",
+      "group": "Gauntlet Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5087735b\"",
+        "borderColor": "\"#FF00ff00\"",
+        "textAccentColor": "\"#FF000000\""
+      }
+    },
+    {
+      "itemId": 23762,
+      "itemName": "Crystal harpoon",
+      "label": "Crystal harpoon custom style",
+      "group": "Gauntlet Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5087735b\"",
+        "borderColor": "\"#FF00ffff\"",
+        "textAccentColor": "\"#FF000000\""
+      }
+    },
+    {
+      "itemId": 23680,
+      "itemName": "Crystal pickaxe",
+      "label": "Crystal pickaxe custom style",
+      "group": "Gauntlet Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5087735b\"",
+        "borderColor": "\"#FFff0000\"",
+        "textAccentColor": "\"#FF000000\""
+      }
+    },
+    {
+      "itemId": 22517,
+      "itemName": "Escape crystal",
+      "label": "Escape crystal custom style",
+      "group": "Gauntlet Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50636165\"",
+        "borderColor": "\"#FFbeb8c2\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFbeb8c2\""
+      }
+    },
+    {
+      "itemId": 233,
+      "itemName": "Pestle and mortar",
+      "label": "Pestle and mortar custom style",
+      "group": "Gauntlet Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "borderColor": "\"#FFFFFFFF\"",
+        "textAccentColor": "\"#FF000000\""
+      }
+    },
+    {
+      "itemId": 1601,
+      "itemName": "Diamond",
+      "label": "Diamond custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50857D7D\"",
+        "borderColor": "\"#FF857D7D\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF857D7D\""
+      }
+    },
+    {
+      "itemId": 1615,
+      "itemName": "Dragonstone",
+      "label": "Dragonstone custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504C0B62\"",
+        "borderColor": "\"#FF4C0B62\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF4C0B62\""
+      }
+    },
+    {
+      "itemId": 1605,
+      "itemName": "Emerald",
+      "label": "Emerald custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#500C6B0F\"",
+        "borderColor": "\"#FF0C6B0F\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF0C6B0F\""
+      }
+    },
+    {
+      "itemId": 1611,
+      "itemName": "Jade",
+      "label": "Jade custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#506E7E64\"",
+        "borderColor": "\"#FF6E7E64\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF6E7E64\""
+      }
+    },
+    {
+      "itemId": 6573,
+      "itemName": "Onyx",
+      "label": "Onyx custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#501C1A1A\"",
+        "borderColor": "\"#FF1C1A1A\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF1C1A1A\""
+      }
+    },
+    {
+      "itemId": 1609,
+      "itemName": "Opal",
+      "label": "Opal custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#507E7D63\"",
+        "borderColor": "\"#FF7E7D63\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF7E7D63\""
+      }
+    },
+    {
+      "itemId": 1613,
+      "itemName": "Red topaz",
+      "label": "Red topaz custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50830E4F\"",
+        "borderColor": "\"#FF830E4F\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF830E4F\""
+      }
+    },
+    {
+      "itemId": 1603,
+      "itemName": "Ruby",
+      "label": "Ruby custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504E0F08\"",
+        "borderColor": "\"#FF4E0F08\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF4E0F08\""
+      }
+    },
+    {
+      "itemId": 1607,
+      "itemName": "Sapphire",
+      "label": "Sapphire custom style",
+      "group": "Gems Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#500C1273\"",
+        "borderColor": "\"#FF0C1273\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF0C1273\""
+      }
+    },
+    {
+      "itemId": 261,
+      "itemName": "Avantoe",
+      "label": "Avantoe custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50145326\"",
+        "borderColor": "\"#FF145326\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF145326\""
+      }
+    },
+    {
+      "itemId": 265,
+      "itemName": "Cadantine",
+      "label": "Cadantine custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5044501c\"",
+        "borderColor": "\"#FF44501c\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF44501c\""
+      }
+    },
+    {
+      "itemId": 267,
+      "itemName": "Dwarf weed",
+      "label": "Dwarf weed custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50094809\"",
+        "borderColor": "\"#FF094809\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF094809\""
+      }
+    },
+    {
+      "itemId": 249,
+      "itemName": "Guam leaf",
+      "label": "Guam leaf custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5009550d\"",
+        "borderColor": "\"#FF09550d\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF09550d\""
+      }
+    },
+    {
+      "itemId": 255,
+      "itemName": "Harralander",
+      "label": "Harralander custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5054780c\"",
+        "borderColor": "\"#FF54780c\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF54780c\""
+      }
+    },
+    {
+      "itemId": 30097,
+      "itemName": "Huasca",
+      "label": "Huasca custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50513748\"",
+        "borderColor": "\"#FF513748\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF513748\""
+      }
+    },
+    {
+      "itemId": 259,
+      "itemName": "Irit leaf",
+      "label": "Irit leaf custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50507436\"",
+        "borderColor": "\"#FF507436\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF507436\""
+      }
+    },
+    {
+      "itemId": 263,
+      "itemName": "Kwuarm",
+      "label": "Kwuarm custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504d5709\"",
+        "borderColor": "\"#FF4d5709\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF4d5709\""
+      }
+    },
+    {
+      "itemId": 2481,
+      "itemName": "Lantadyme",
+      "label": "Lantadyme custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5008473c\"",
+        "borderColor": "\"#FF08473c\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF08473c\""
+      }
+    },
+    {
+      "itemId": 251,
+      "itemName": "Marrentill",
+      "label": "Marrentill custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#500c7610\"",
+        "borderColor": "\"#FF0c7610\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF0c7610\""
+      }
+    },
+    {
+      "itemId": 257,
+      "itemName": "Ranarr weed",
+      "label": "Ranarr weed custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#503c5f09\"",
+        "borderColor": "\"#FF3c5f09\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF3c5f09\""
+      }
+    },
+    {
+      "itemId": 3000,
+      "itemName": "Snapdragon",
+      "label": "Snapdragon custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#503e4b08\"",
+        "borderColor": "\"#FF3e4b08\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF3e4b08\""
+      }
+    },
+    {
+      "itemId": 253,
+      "itemName": "Tarromin",
+      "label": "Tarromin custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#500c7138\"",
+        "borderColor": "\"#FF0c7138\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF0c7138\""
+      }
+    },
+    {
+      "itemId": 2998,
+      "itemName": "Toadflax",
+      "label": "Toadflax custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50002400\"",
+        "borderColor": "\"#FF002400\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF002400\""
+      }
+    },
+    {
+      "itemId": 269,
+      "itemName": "Torstol",
+      "label": "Torstol custom style",
+      "group": "Herbs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5009570c\"",
+        "borderColor": "\"#FF09570c\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF09570c\""
+      }
+    },
+    {
+      "itemId": 10808,
+      "itemName": "Arctic pine logs",
+      "label": "Arctic pine logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50CBAC73\"",
+        "borderColor": "\"#FFAB8C4E\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFAB8C4E\""
+      }
+    },
+    {
+      "itemId": 3239,
+      "itemName": "Bark",
+      "label": "Bark custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5087734B\"",
+        "borderColor": "\"#FF483A20\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF483A20\""
+      }
+    },
+    {
+      "itemId": 24691,
+      "itemName": "Blisterwood logs",
+      "label": "Blisterwood logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50923A34\"",
+        "borderColor": "\"#FFDFDBDB\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFDFDBDB\""
+      }
+    },
+    {
+      "itemId": 13355,
+      "itemName": "Juniper logs",
+      "label": "Juniper logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50A28F6E\"",
+        "borderColor": "\"#FF988667\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF988667\""
+      }
+    },
+    {
+      "itemId": 1513,
+      "itemName": "Magic logs",
+      "label": "Magic logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#502AA79A\"",
+        "borderColor": "\"#FF8F8560\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF8F8560\""
+      }
+    },
+    {
+      "itemId": 6332,
+      "itemName": "Mahogany logs",
+      "label": "Mahogany logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50693F09\"",
+        "borderColor": "\"#FFBEA16C\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFBEA16C\""
+      }
+    },
+    {
+      "itemId": 1517,
+      "itemName": "Maple logs",
+      "label": "Maple logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50846230\"",
+        "borderColor": "\"#FF704C0D\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF6A5528\""
+      }
+    },
+    {
+      "itemId": 1521,
+      "itemName": "Oak logs",
+      "label": "Oak logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50A7875E\"",
+        "borderColor": "\"#FF8B6B40\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF8B6B40\""
+      }
+    },
+    {
+      "itemId": 19669,
+      "itemName": "Redwood logs",
+      "label": "Redwood logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50B87242\"",
+        "borderColor": "\"#FF73460D\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF73460D\""
+      }
+    },
+    {
+      "itemId": 6333,
+      "itemName": "Teak logs",
+      "label": "Teak logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50937243\"",
+        "borderColor": "\"#FFBFA26C\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFBFA26C\""
+      }
+    },
+    {
+      "itemId": 1519,
+      "itemName": "Willow logs",
+      "label": "Willow logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5071673F\"",
+        "borderColor": "\"#FF564D20\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF5A5028\""
+      }
+    },
+    {
+      "itemId": 1515,
+      "itemName": "Yew logs",
+      "label": "Yew logs custom style",
+      "group": "Logs Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50856D3D\"",
+        "borderColor": "\"#FF5C4409\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF5C4409\""
+      }
+    },
+    {
+      "itemId": 22322,
+      "itemName": "Avernic defender",
+      "label": "Avernic defender custom style",
+      "group": "Misc Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#9077776e\"",
+        "borderColor": "\"#FF1f1c1c\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF000000\"",
+        "fontType": "3",
+        "showLootbeam": "true",
+        "lootbeamColor": "\"#FF1f1c1c\""
+      }
+    },
+    {
+      "itemId": 1635,
+      "itemName": "Gold ring",
+      "label": "DT2 Gold Ring Style",
+      "group": "Misc Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50c6b120\"",
+        "borderColor": "\"#FFfce32e\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFfce32e\"",
+        "fontType": "3",
+        "showLootbeam": "true",
+        "lootbeamColor": "\"#FFfce32e\""
+      }
+    },
+    {
+      "itemId": 30793,
+      "itemName": "Purifying sigil",
+      "label": "Purifying sigil custom style",
+      "group": "Misc Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#90d0d0d0\"",
+        "borderColor": "\"#FFFFFFFF\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFFFFFFF\"",
+        "fontType": "3",
+        "showLootbeam": "true",
+        "lootbeamColor": "\"#ffd0d0d0\""
+      }
+    },
+    {
+      "itemId": 449,
+      "itemName": "Adamantite ore",
+      "label": "Adamantite ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50485B49\"",
+        "borderColor": "\"#FF485B49\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF485B49\""
+      }
+    },
+    {
+      "itemId": 13575,
+      "itemName": "Blasted ore",
+      "label": "Blasted ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50515757\"",
+        "borderColor": "\"#FF515757\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF515757\""
+      }
+    },
+    {
+      "itemId": 9139,
+      "itemName": "Blurite ore",
+      "label": "Blurite ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50787ACF\"",
+        "borderColor": "\"#FF787ACF\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF787ACF\""
+      }
+    },
+    {
+      "itemId": 453,
+      "itemName": "Coal",
+      "label": "Coal custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50383725\"",
+        "borderColor": "\"#FF383725\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF383725\""
+      }
+    },
+    {
+      "itemId": 436,
+      "itemName": "Copper ore",
+      "label": "Copper ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50DA7D37\"",
+        "borderColor": "\"#FFDA7D37\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFDA7D37\""
+      }
+    },
+    {
+      "itemId": 9632,
+      "itemName": "Daeyalt ore",
+      "label": "Daeyalt ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#500A645B\"",
+        "borderColor": "\"#FF0A645B\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF0A645B\""
+      }
+    },
+    {
+      "itemId": 444,
+      "itemName": "Gold ore",
+      "label": "Gold ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50C6A118\"",
+        "borderColor": "\"#FFC6A118\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFC6A118\""
+      }
+    },
+    {
+      "itemId": 440,
+      "itemName": "Iron ore",
+      "label": "Iron ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504C2D22\"",
+        "borderColor": "\"#FF4C2D22\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF4C2D22\""
+      }
+    },
+    {
+      "itemId": 13356,
+      "itemName": "Lovakite ore",
+      "label": "Lovakite ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#505C1009\"",
+        "borderColor": "\"#FF5C1009\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF5C1009\""
+      }
+    },
+    {
+      "itemId": 447,
+      "itemName": "Mithril ore",
+      "label": "Mithril ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5048486A\"",
+        "borderColor": "\"#FF48486A\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF48486A\""
+      }
+    },
+    {
+      "itemId": 451,
+      "itemName": "Runite ore",
+      "label": "Runite ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#504D6671\"",
+        "borderColor": "\"#FF4D6671\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF4D6671\""
+      }
+    },
+    {
+      "itemId": 442,
+      "itemName": "Silver ore",
+      "label": "Silver ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#509999A5\"",
+        "borderColor": "\"#FF9999A5\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF9999A5\""
+      }
+    },
+    {
+      "itemId": 438,
+      "itemName": "Tin ore",
+      "label": "Tin ore custom style",
+      "group": "Ores Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50887F7E\"",
+        "borderColor": "\"#FF887F7E\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF887F7E\""
+      }
+    },
+    {
+      "itemId": 26792,
+      "itemName": "Abyssal pearls",
+      "label": "Raw shrimps custom style",
+      "group": "Raw Fish Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5087735b\"",
+        "borderColor": "\"#FF657e7f\"",
+        "textAccentColor": "\"#FF000000\""
+      }
+    },
+    {
+      "itemId": 30843,
+      "itemName": "Aether rune",
+      "label": "Aether rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50d8d68d\"",
+        "borderColor": "\"#FFa4d2bb\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFd8d68d\""
+      }
+    },
+    {
+      "itemId": 556,
+      "itemName": "Air rune",
+      "label": "Air rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50E1DEDE\"",
+        "borderColor": "\"#FFE1DEDE\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFE1DEDE\""
+      }
+    },
+    {
+      "itemId": 9075,
+      "itemName": "Astral rune",
+      "label": "Astral rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50CDB5CD\"",
+        "borderColor": "\"#FFCDB5CD\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFCDB5CD\""
+      }
+    },
+    {
+      "itemId": 565,
+      "itemName": "Blood rune",
+      "label": "Blood rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50891D11\"",
+        "borderColor": "\"#FF891D11\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF891D11\""
+      }
+    },
+    {
+      "itemId": 559,
+      "itemName": "Body rune",
+      "label": "Body rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#501A21CF\"",
+        "borderColor": "\"#FF1A21CF\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF1A21CF\""
+      }
+    },
+    {
+      "itemId": 562,
+      "itemName": "Chaos rune",
+      "label": "Chaos rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50E0A81A\"",
+        "borderColor": "\"#FFE0A81A\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFE0A81A\""
+      }
+    },
+    {
+      "itemId": 564,
+      "itemName": "Cosmic rune",
+      "label": "Cosmic rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50E0DE1A\"",
+        "borderColor": "\"#FFE0DE1A\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFE0DE1A\""
+      }
+    },
+    {
+      "itemId": 560,
+      "itemName": "Death rune",
+      "label": "Death rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50E4E1E1\"",
+        "borderColor": "\"#FFE4E1E1\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFE4E1E1\""
+      }
+    },
+    {
+      "itemId": 4696,
+      "itemName": "Dust rune",
+      "label": "Dust rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50746241\"",
+        "borderColor": "\"#FF746241\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF746241\""
+      }
+    },
+    {
+      "itemId": 557,
+      "itemName": "Earth rune",
+      "label": "Earth rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#506D490D\"",
+        "borderColor": "\"#FF6D490D\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF6D490D\""
+      }
+    },
+    {
+      "itemId": 554,
+      "itemName": "Fire rune",
+      "label": "Fire rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50A72215\"",
+        "borderColor": "\"#FFA72215\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFA72215\""
+      }
+    },
+    {
+      "itemId": 4699,
+      "itemName": "Lava rune",
+      "label": "Lava rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50D28019\"",
+        "borderColor": "\"#FFD28019\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFD28019\""
+      }
+    },
+    {
+      "itemId": 563,
+      "itemName": "Law rune",
+      "label": "Law rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#501A22E0\"",
+        "borderColor": "\"#FF1A22E0\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF1A22E0\""
+      }
+    },
+    {
+      "itemId": 558,
+      "itemName": "Mind rune",
+      "label": "Mind rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50D58A2E\"",
+        "borderColor": "\"#FFD58A2E\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFD58A2E\""
+      }
+    },
+    {
+      "itemId": 4695,
+      "itemName": "Mist rune",
+      "label": "Mist rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50C8C0C0\"",
+        "borderColor": "\"#FFC8C0C0\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFC8C0C0\""
+      }
+    },
+    {
+      "itemId": 4698,
+      "itemName": "Mud rune",
+      "label": "Mud rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#505D3B17\"",
+        "borderColor": "\"#FF5D3B17\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF5D3B17\""
+      }
+    },
+    {
+      "itemId": 561,
+      "itemName": "Nature rune",
+      "label": "Nature rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50168B1A\"",
+        "borderColor": "\"#FF168B1A\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF168B1A\""
+      }
+    },
+    {
+      "itemId": 4697,
+      "itemName": "Smoke rune",
+      "label": "Smoke rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50534D4D\"",
+        "borderColor": "\"#FF534D4D\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF534D4D\""
+      }
+    },
+    {
+      "itemId": 566,
+      "itemName": "Soul rune",
+      "label": "Soul rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#509192D3\"",
+        "borderColor": "\"#FF9192D3\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF9192D3\""
+      }
+    },
+    {
+      "itemId": 4694,
+      "itemName": "Steam rune",
+      "label": "Steam rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50AEAEB7\"",
+        "borderColor": "\"#FFAEAEB7\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFAEAEB7\""
+      }
+    },
+    {
+      "itemId": 28929,
+      "itemName": "Sunfire rune",
+      "label": "Sunfire rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50DFA81A\"",
+        "borderColor": "\"#FFDFA81A\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFDFA81A\""
+      }
+    },
+    {
+      "itemId": 555,
+      "itemName": "Water rune",
+      "label": "Water rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50151AA7\"",
+        "borderColor": "\"#FF151AA7\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF151AA7\""
+      }
+    },
+    {
+      "itemId": 21880,
+      "itemName": "Wrath rune",
+      "label": "Wrath rune custom style",
+      "group": "Runes Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50353030\"",
+        "borderColor": "\"#FF353030\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF353030\""
+      }
+    },
+    {
+      "itemId": 23083,
+      "itemName": "Brimstone key",
+      "label": "Brimstone key",
+      "group": "Slayer Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5026636b\"",
+        "borderColor": "\"#FFFFFFFF\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF41a9b7\"",
+        "showLootbeam": "true"
+      }
+    },
+    {
+      "itemId": 20736,
+      "itemName": "Dust battlestaff",
+      "label": "Dust battlestaff",
+      "group": "Slayer Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5071603f\"",
+        "borderColor": "\"#FFFFFFFF\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFbda069\"",
+        "showLootbeam": "true"
+      }
+    },
+    {
+      "itemId": 21270,
+      "itemName": "Eternal gem",
+      "label": "Eternal gem",
+      "group": "Slayer Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#5036aebc\"",
+        "borderColor": "\"#FF9fc34a\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FF36aebc\"",
+        "showLootbeam": "true"
+      }
+    },
+    {
+      "itemId": 20730,
+      "itemName": "Mist battlestaff",
+      "label": "Mist battlestaff",
+      "group": "Slayer Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50847a83\"",
+        "borderColor": "\"#FFFFFFFF\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFd0c0ce\"",
+        "showLootbeam": "true"
+      }
+    },
+    {
+      "itemId": 22516,
+      "itemName": "Dawnbringer",
+      "label": "Dawnbringer custom style",
+      "group": "Theatre of Blood Styles",
+      "style": {
+        "textColor": "\"#FFFFFFFF\"",
+        "backgroundColor": "\"#50e39cb1\"",
+        "borderColor": "\"#FFf5f3f3\"",
+        "textAccentColor": "\"#FF000000\"",
+        "menuTextColor": "\"#FFe39cb1\""
+      }
+    }
+  ]
+}
