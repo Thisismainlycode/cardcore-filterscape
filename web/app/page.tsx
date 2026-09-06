@@ -30,6 +30,7 @@ type ReferenceStyle = {
   group: string;
   style: Record<string, string>;
 };
+type Design = 'colorful' | 'status' | 'simple';
 const cats = [
   ['currency', 'Currency'],
   ['teleports', 'Teleports'],
@@ -158,25 +159,41 @@ function block(
   id: string,
   label: string,
   a: Item[],
+  design: Design,
 ) {
   const m = `${state}_${id}`.toUpperCase(),
     list = ids(a),
     rgb = categoryColors[id] || categoryColors.miscellaneous,
     text = state === 'obtained' ? `#FF${rgb}` : `#B3${rgb}`,
     background = state === 'obtained' ? `#38${rgb}` : `#14${rgb}`,
-    border = state === 'obtained' ? `#FF${rgb}` : `#70${rgb}`;
-  return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${label}"\ngroup: "${label} (${a.length} cards / ${list.length} item IDs)"\nexampleItem: "${(a[0]?.name || 'Coins').replaceAll('"', "'")}"\nexampleItemId: ${a[0]?.id || 995}\n*/\n#define VAR_CARDCORE_${m}_STYLE \\\n++ hidden = false;\\\n++ textColor = "${text}";\\\n++ menuTextColor = "${text}";\\\n++ backgroundColor = "${background}";\\\n++ borderColor = "${border}";\\\n++ textAccentColor = "#FF000000";\\\n++ icon = CurrentItem();\\\n++ showLootbeam = ${state === 'obtained' && (id === 'slayer_pvm' || id === 'clues_uniques')};\\\n++ lootbeamColor = "#FF${rgb}";\\\n++ notify = false;\\\n++ showValue = false;\\\n++ menuSort = ${state === 'obtained' ? 150 : 50};\n\n#define CONST_CARDCORE_${m}_IDS [${list.join(',')}]\nrule (id:CONST_CARDCORE_${m}_IDS) { VAR_CARDCORE_${m}_STYLE }`;
+    border = state === 'obtained' ? `#FF${rgb}` : `#70${rgb}`,
+    isObtained = state === 'obtained',
+    designText = design === 'colorful' ? text : isObtained ? '#FF9DFFB0' : '#FF969696',
+    designBackground = design === 'colorful' ? background : design === 'status' && isObtained ? '#242E6B3E' : '#00000000',
+    designBorder = design === 'colorful' ? border : design === 'status' && isObtained ? '#FF9DFFB0' : '#00000000',
+    designAccent = design === 'colorful' ? '#FF000000' : design === 'status' && isObtained ? '#FF183020' : '#00000000',
+    designIcon = design === 'status' ? `Sprite(${isObtained ? 699 : 697}, 0)` : 'CurrentItem()';
+  return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${label}"\ngroup: "${label} (${a.length} cards / ${list.length} item IDs)"\nexampleItem: "${(a[0]?.name || 'Coins').replaceAll('"', "'")}"\nexampleItemId: ${a[0]?.id || 995}\n*/\n#define VAR_CARDCORE_${m}_STYLE \\\n++ hidden = false;\\\n++ textColor = "${designText}";\\\n++ menuTextColor = "${designText}";\\\n++ backgroundColor = "${designBackground}";\\\n++ borderColor = "${designBorder}";\\\n++ textAccentColor = "${designAccent}";\\\n++ icon = ${designIcon};\\\n++ showLootbeam = ${state === 'obtained' && (id === 'slayer_pvm' || id === 'clues_uniques')};\\\n++ lootbeamColor = "#FF${rgb}";\\\n++ notify = false;\\\n++ showValue = false;\\\n++ menuSort = ${state === 'obtained' ? 150 : 50};\n\n#define CONST_CARDCORE_${m}_IDS [${list.join(',')}]\nrule (id:CONST_CARDCORE_${m}_IDS) { VAR_CARDCORE_${m}_STYLE }`;
 }
-function individualBlocks(state: 'obtained' | 'missing', items: Item[], styles: ReferenceStyle[]) {
+function individualBlocks(state: 'obtained' | 'missing', items: Item[], styles: ReferenceStyle[], design: Design) {
   const available = new Map(items.map((item) => [item.id, item]));
   return styles.filter((entry) => available.has(entry.itemId)).map((entry) => {
     const item = available.get(entry.itemId)!;
     const key = `${state}_${entry.itemId}`.toUpperCase();
     const category = classify(item);
+    const isObtained = state === 'obtained';
     const properties = {
       hidden: 'false',
       icon: 'CurrentItem()',
       ...entry.style,
+      ...(design === 'colorful' ? {} : {
+        textColor: isObtained ? '"#FF9DFFB0"' : '"#FF969696"',
+        menuTextColor: isObtained ? '"#FF9DFFB0"' : '"#FF969696"',
+        backgroundColor: design === 'status' && isObtained ? '"#242E6B3E"' : '"#00000000"',
+        borderColor: design === 'status' && isObtained ? '"#FF9DFFB0"' : '"#00000000"',
+        textAccentColor: design === 'status' && isObtained ? '"#FF183020"' : '"#00000000"',
+        icon: design === 'status' ? `Sprite(${isObtained ? 699 : 697}, 0)` : 'CurrentItem()',
+      }),
       showLootbeam: String(state === 'obtained' && (category === 'slayer_pvm' || category === 'clues_uniques')),
       showValue: 'false',
     };
@@ -184,7 +201,7 @@ function individualBlocks(state: 'obtained' | 'missing', items: Item[], styles: 
     return `/*@ define:input:cardcore_${state}\ntype: style\nlabel: "${entry.label.replaceAll('"', "'")}"\ngroup: "Individual: ${entry.group.replaceAll('"', "'")}"\nexampleItem: "${item.name.replaceAll('"', "'")}"\nexampleItemId: ${item.id}\n*/\n#define VAR_CARDCORE_INDIVIDUAL_${key} \\\n${body.slice(0, -1)}\n\n#define CONST_CARDCORE_INDIVIDUAL_${key}_IDS [${ids([item]).join(',')}]\nrule (id:CONST_CARDCORE_INDIVIDUAL_${key}_IDS) { VAR_CARDCORE_INDIVIDUAL_${key} }`;
   }).join('\n\n');
 }
-export function makeFilter(r: Result, referenceStyles: ReferenceStyle[] = []) {
+export function makeFilter(r: Result, referenceStyles: ReferenceStyle[] = [], design: Design = 'colorful') {
   const groups = (s: 'obtained' | 'missing', a: Item[]) =>
     cats
       .map(([id, l]) =>
@@ -193,13 +210,14 @@ export function makeFilter(r: Result, referenceStyles: ReferenceStyle[] = []) {
           id,
           l,
           a.filter((i) => classify(i) === id),
+          design,
         ),
       )
       .join('\n\n');
-  return `/*@ define:module:cardcore_obtained\n---\nname: "Cardcore: Obtained Cards"\nsubtitle: "${r.obtained.length} cards unlocked"\n*/\n\nmeta { name = "Cardcore - ${r.name.replaceAll('"', "'")}"; description = "Generated by Cardcore Filters by Thisismain."; }\n\n${groups('obtained', r.obtained)}\n\n${individualBlocks('obtained', r.obtained, referenceStyles)}\n\n/*@ define:module:cardcore_missing\n---\nname: "Cardcore: Missing Cards"\nsubtitle: "${r.missing.length} cards not yet obtained"\n*/\n\n${groups('missing', r.missing)}\n\n${individualBlocks('missing', r.missing, referenceStyles)}\n`;
+  return `/*@ define:module:cardcore_obtained\n---\nname: "Cardcore: Obtained Cards"\nsubtitle: "${r.obtained.length} cards unlocked · ${design} design"\n*/\n\nmeta { name = "Cardcore - ${r.name.replaceAll('"', "'")}"; description = "Generated by Cardcore Filters by Thisismain."; }\n\n${groups('obtained', r.obtained)}\n\n${individualBlocks('obtained', r.obtained, referenceStyles, design)}\n\n/*@ define:module:cardcore_missing\n---\nname: "Cardcore: Missing Cards"\nsubtitle: "${r.missing.length} cards not yet obtained · ${design} design"\n*/\n\n${groups('missing', r.missing)}\n\n${individualBlocks('missing', r.missing, referenceStyles, design)}\n`;
 }
-export const createFilter = (result: Result, referenceStyles: ReferenceStyle[] = []) =>
-  makeFilter(result, referenceStyles).replaceAll('\n++ ', '\n  ');
+export const createFilter = (result: Result, referenceStyles: ReferenceStyle[] = [], design: Design = 'colorful') =>
+  makeFilter(result, referenceStyles, design).replaceAll('\n++ ', '\n  ');
 export default function Home() {
   const [catalog, setCatalog] = useState<Item[]>([]),
     [referenceStyles, setReferenceStyles] = useState<ReferenceStyle[]>([]),
@@ -210,6 +228,7 @@ export default function Home() {
     [user, setUser] = useState(''),
     [loading, setLoading] = useState(false),
     [filterLoading, setFilterLoading] = useState(false),
+    [design, setDesign] = useState<Design>('colorful'),
     [kind, setKind] = useState<'obtained' | 'missing'>('obtained'),
     [copied, setCopied] = useState(false),
     [compareA, setCompareA] = useState(''),
@@ -326,7 +345,7 @@ export default function Home() {
     if (!result) return;
     const a = document.createElement('a');
     a.href = URL.createObjectURL(
-      new Blob([createFilter(result, referenceStyles)], { type: 'text/plain' }),
+      new Blob([createFilter(result, referenceStyles, design)], { type: 'text/plain' }),
     );
     a.download = `${result.name.replace(/[^a-z0-9_-]+/gi, '-').toLowerCase()}-cardcore.rs2f`;
     a.click();
@@ -337,7 +356,7 @@ export default function Home() {
     setFilterLoading(true);
     setError('');
     try {
-      const rs2f = createFilter(result, referenceStyles);
+      const rs2f = createFilter(result, referenceStyles, design);
       const hashBuffer = await crypto.subtle.digest(
         'SHA-1',
         new TextEncoder().encode(rs2f),
@@ -503,6 +522,17 @@ export default function Home() {
               <section className="card">
                 <h2>FilterScape</h2>
                 <p>Separate Obtained and Missing classifications.</p>
+                <div className="design-picker" role="group" aria-label="Filter design">
+                  <button className={design === 'colorful' ? 'active' : ''} onClick={() => setDesign('colorful')}>
+                    <b>Colorful</b><span>Category colors and item styles</span>
+                  </button>
+                  <button className={design === 'status' ? 'active' : ''} onClick={() => setDesign('status')}>
+                    <b>Obtained &amp; Missing</b><span>Status sprites, green and grey</span>
+                  </button>
+                  <button className={design === 'simple' ? 'active' : ''} onClick={() => setDesign('simple')}>
+                    <b>Simple</b><span>Green and grey text only</span>
+                  </button>
+                </div>
                 <div className="actions">
                   <button className="primary" onClick={open} disabled={filterLoading}>
                     {filterLoading ? <LoaderCircle className="spin" size={15} /> : <ExternalLink size={15} />}

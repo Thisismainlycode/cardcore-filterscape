@@ -16,6 +16,12 @@ NPC cards are deliberately excluded. The generated filter only contains OSRS gro
 
 The builder runs entirely in the browser and does not store pasted collection data.
 
+Before opening or downloading a filter, users can choose one of three designs:
+
+- **Colorful** — category colors plus the reference-inspired individual item styles.
+- **Obtained & Missing** — sprite 699 and outlined light-green styling for obtained cards; sprite 697 and outline-free grey styling for missing cards.
+- **Simple** — light-green obtained text and grey missing text without status sprites or outlines.
+
 ## Modules
 
 ### Cardcore: Obtained Cards

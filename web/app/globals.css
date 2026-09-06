@@ -231,6 +231,34 @@ a[aria-disabled='true'] {
   margin-top: 20px;
   flex-wrap: wrap;
 }
+.design-picker {
+  display: grid;
+  gap: 7px;
+  margin-top: 13px;
+}
+.design-picker button {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0b1015;
+  padding: 9px 10px;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+.design-picker button.active {
+  border-color: var(--green);
+  background: #14251e;
+}
+.design-picker b {
+  font-size: 12px;
+}
+.design-picker span {
+  color: var(--muted);
+  font-size: 10px;
+}
 .section-head {
   align-items: flex-start;
   justify-content: space-between;
