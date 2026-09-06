@@ -1,0 +1,30 @@
+{
+  "catalogItemCards": 3776,
+  "ownedItemCards": 1583,
+  "missingItemCards": 2193,
+  "ignoredNpcEntries": 404,
+  "unresolvedEntries": [
+    "Batta tin",
+    "Crunchy tray",
+    "Gnomebowl mould",
+    "Premade blurb' sp.",
+    "Premade dr' dragon",
+    "Premade s'y crunch",
+    "Premade sgg",
+    "Premade wiz blz'd",
+    "Pumpkin pie",
+    "Raw fishlike thing",
+    "Sliced banana",
+    "Strawberries",
+    "Vial of water"
+  ],
+  "missingByTier": {
+    "Godly": 84,
+    "Mythic": 53,
+    "Legendary": 130,
+    "Epic": 255,
+    "Rare": 420,
+    "Uncommon": 515,
+    "Common": 736
+  }
+}
