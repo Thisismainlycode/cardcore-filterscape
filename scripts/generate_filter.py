@@ -58,11 +58,6 @@ def generate(catalog_obj, collection):
     missing = [item for item in items if int(item["id"]) not in owned]
 
     lines = [
-        'meta {',
-        '  name = "Cardcore - Pack Bros";',
-        '  description = "Community FilterScape filter generated from the Pack Bros OSRS TCG collection.";',
-        '}',
-        '',
         '/*@ define:module:cardcore_overrides',
         '---',
         'name: "Cardcore: Manual Overrides"',
@@ -70,6 +65,11 @@ def generate(catalog_obj, collection):
         'description: |',
         '  Manual overrides are evaluated first so they can override generated Cardcore rules.',
         '*/',
+        '',
+        'meta {',
+        '  name = "Cardcore - Pack Bros";',
+        '  description = "Community FilterScape filter generated from the Pack Bros OSRS TCG collection.";',
+        '}',
         '',
         '/*@ define:input:cardcore_overrides',
         'type: stringlist',

@@ -1,8 +1,3 @@
-meta {
-  name = "Cardcore - Pack Bros";
-  description = "Community FilterScape filter generated from the Pack Bros OSRS TCG collection.";
-}
-
 /*@ define:module:cardcore_overrides
 ---
 name: "Cardcore: Manual Overrides"
@@ -10,6 +5,11 @@ subtitle: "One-off item rules evaluated before Cardcore collection rules"
 description: |
   Manual overrides are evaluated first so they can override generated Cardcore rules.
 */
+
+meta {
+  name = "Cardcore - Pack Bros";
+  description = "Community FilterScape filter generated from the Pack Bros OSRS TCG collection.";
+}
 
 /*@ define:input:cardcore_overrides
 type: stringlist
