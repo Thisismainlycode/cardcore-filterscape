@@ -24,23 +24,35 @@ repository. Do not publish collection exports or backend data there.
 
 ## Modules
 
+### Cardcore: Obtained Cards
+
+The primary gameplay module. Obtained cards identify the ground items unlocked by
+the collection. Each classification exposes FilterScape's normal **Style** editor.
+
 ### Cardcore: Missing Cards
 
-Enabled by default. Missing cards are grouped by OSRS TCG rarity:
+An optional companion module for styling items whose cards have not been obtained.
+It exposes the same classifications as Obtained Cards.
 
-- Common
-- Uncommon
-- Rare
-- Epic
-- Legendary
-- Mythic
-- Godly
+Both modules contain exclusive classifications inspired by the Iron Filter:
 
-Each group exposes FilterScape's normal **Style** editor.
-
-### Cardcore: Owned Cards
-
-Disabled by default so other loot-filter behavior can handle already-unlocked items. Enable it if you want explicit styling for owned Cardcore items.
+- Currency
+- Teleports
+- Food and Potions
+- Clues and Uniques
+- Slayer and PvM
+- Runes and Magic
+- Seeds and Farming
+- Herbs and Herblore
+- Ores and Bars
+- Logs and Planks
+- Prayer
+- Fletching
+- Crafting Materials
+- Weapons and Ammunition
+- Armour and Equipment
+- Tools and Skilling
+- Miscellaneous
 
 ### Cardcore: Manual Overrides
 
@@ -64,7 +76,7 @@ Commit the regenerated `filter.rs2f` whenever the collection changes. Raw source
 1. Collection entries with `kind: "npc"` are discarded.
 2. Item entries match the catalog by numeric OSRS item ID first.
 3. Exact normalized card name is used only as a fallback.
-4. Catalog variants can be included with their parent card during generation.
+4. Catalog variants are included with their parent card during generation.
 5. Unresolved entries fail closed and are not added to the filter.
 
 ## Compatibility

@@ -18,6 +18,26 @@ COLORS = {
 LOOTBEAM = {"Godly": True, "Mythic": True, "Legendary": True, "Epic": True, "Rare": True, "Uncommon": False, "Common": False}
 NOTIFY = {"Godly": True, "Mythic": True, "Legendary": True, "Epic": True, "Rare": False, "Uncommon": False, "Common": False}
 
+CATEGORIES = [
+    ("currency", "Currency"),
+    ("teleports", "Teleports"),
+    ("food_potions", "Food and Potions"),
+    ("clues_uniques", "Clues and Uniques"),
+    ("slayer_pvm", "Slayer and PvM"),
+    ("runes_magic", "Runes and Magic"),
+    ("seeds_farming", "Seeds and Farming"),
+    ("herblore", "Herbs and Herblore"),
+    ("ores_bars", "Ores and Bars"),
+    ("logs_planks", "Logs and Planks"),
+    ("prayer", "Prayer"),
+    ("fletching", "Fletching"),
+    ("crafting", "Crafting Materials"),
+    ("weapons_ammo", "Weapons and Ammunition"),
+    ("armour_equipment", "Armour and Equipment"),
+    ("tools_skilling", "Tools and Skilling"),
+    ("miscellaneous", "Miscellaneous"),
+]
+
 
 def normalized_name(value):
     return re.sub(r"\s+", " ", str(value or "").strip().lower())
@@ -30,6 +50,85 @@ def load_jsonish(path):
     if text.endswith("```"):
         text = text[:-3]
     return json.loads(text.strip())
+
+
+def classify(item):
+    """Assign each card to one exclusive, FilterScape-friendly classification."""
+    name = normalized_name(item.get("name"))
+    tcg = item.get("tcg", {})
+    tags = set(tcg.get("tags", {}).get("labels", []))
+    slot = tcg.get("tags", {}).get("slot")
+
+    if "Currency" in tags:
+        return "currency"
+    if re.search(r"teleport|tablet|teletab|fairy ring|games necklace|dueling ring", name):
+        return "teleports"
+    if re.search(r"potion|brew|restore|serum|antipoison|antidote|food|cake|pie|pizza|stew|kebab|wine|beer|ale", name):
+        return "food_potions"
+    if "Clue" in tags or "Pet" in tags:
+        return "clues_uniques"
+    if "Slayer" in tags:
+        return "slayer_pvm"
+    if "Runecraft" in tags or name.endswith(" rune") or "rune essence" in name:
+        return "runes_magic"
+    if "seed" in name or "Farming" in tags:
+        return "seeds_farming"
+    if "Herblore" in tags:
+        return "herblore"
+    if "ore" in name or name.endswith(" bar") or ("Mining" in tags and not slot):
+        return "ores_bars"
+    if "log" in name or "plank" in name or "Woodcutting" in tags or "Firemaking" in tags:
+        return "logs_planks"
+    if "Prayer" in tags:
+        return "prayer"
+    if "Fletching" in tags:
+        return "fletching"
+    if "Crafting" in tags and not slot:
+        return "crafting"
+    if "Weapon" in tags or "Ammo" in tags or tcg.get("tags", {}).get("combatStyle"):
+        return "weapons_ammo"
+    if "Equipment" in tags or slot:
+        return "armour_equipment"
+    if "Tool" in tags or tags.intersection({"Agility", "Construction", "Cooking", "Fishing", "Hunter", "Sailing", "Smithing", "Thieving"}):
+        return "tools_skilling"
+    return "miscellaneous"
+
+
+def filter_ids(cards):
+    """Return canonical item IDs plus numeric variants unlocked by each card."""
+    ids = set()
+    for item in cards:
+        ids.add(int(item["id"]))
+        for variant in item.get("tcg", {}).get("variants", []):
+            if isinstance(variant.get("id"), int):
+                ids.add(int(variant["id"]))
+    return sorted(ids)
+
+
+def style_lines(prefix, category_id, label, cards, obtained):
+    macro = f"{prefix}_{category_id}".upper()
+    ids = filter_ids(cards)
+    color = "#FF62E6A7" if obtained else "#FFFF8787"
+    return [
+        f'/*@ define:input:cardcore_{prefix.lower()}',
+        'type: style',
+        f'label: "{label}"',
+        f'group: "{label} ({len(cards)} cards / {len(ids)} item IDs)"',
+        f'exampleItem: "{cards[0]["name"].replace(chr(34), chr(39)) if cards else "Coins"}"',
+        '*/',
+        f'#define VAR_CARDCORE_{macro}_STYLE \\',
+        '  hidden = false;\\',
+        f'  textColor = "{color}";\\',
+        f'  borderColor = "{color}";\\',
+        f'  showLootbeam = {"true" if obtained else "false"};\\',
+        '  notify = false;\\',
+        '  showValue = true;\\',
+        f'  menuSort = {150 if obtained else 50};',
+        '',
+        f'#define CONST_CARDCORE_{macro}_IDS [{",".join(map(str, ids))}]',
+        f'rule (id:CONST_CARDCORE_{macro}_IDS) {{ VAR_CARDCORE_{macro}_STYLE }}',
+        '',
+    ]
 
 
 def generate(catalog_obj, collection):
@@ -55,6 +154,7 @@ def generate(catalog_obj, collection):
         else:
             owned.add(int(item["id"]))
 
+    obtained = [item for item in items if int(item["id"]) in owned]
     missing = [item for item in items if int(item["id"]) not in owned]
 
     lines = [
@@ -104,56 +204,52 @@ def generate(catalog_obj, collection):
         '',
         'rule (name:VAR_CARDCORE_ALWAYS_HIDE) { hidden = true; }',
         '',
-        '/*@ define:module:cardcore_missing',
+        '/*@ define:module:cardcore_obtained',
         '---',
-        'name: "Cardcore: Missing Cards"',
-        'subtitle: "Highlight item cards the Pack Bros collection has not unlocked yet"',
+        'name: "Cardcore: Obtained Cards"',
+        'subtitle: "Style ground items unlocked by cards in the Pack Bros collection"',
         'description: |',
-        '  Generated from the Pack Bros collection and OSRS TCG item catalog.',
+        '  Obtained cards are the permission source for Cardcore gameplay.',
         f'  - Item cards in catalog: {len(items)}',
-        f'  - Owned item cards: {len(owned)}',
-        f'  - Missing item cards: {len(missing)}',
+        f'  - Obtained item cards: {len(obtained)}',
         f'  - NPC collection entries ignored: {npc_ignored}',
         f'  - Unresolved imported entries ignored: {len(unresolved)}',
-        '  This community snapshot uses canonical Cardcore item IDs only.',
-        '  NPC cards are excluded from generation.',
+        '  Each classification contains canonical item IDs and catalog variants.',
         '*/',
         '',
     ]
 
-    for tier in TIERS:
-        cards = [item for item in missing if item.get("tcg", {}).get("tierLabel") == tier]
-        ids = [int(item["id"]) for item in cards]
-        macro = tier.upper()
-        example = (cards[0]["name"] if cards else "Coins").replace('"', "'")
-        lines += [
-            '/*@ define:input:cardcore_missing',
-            'type: style',
-            'label: Style',
-            f'group: "{tier} missing cards ({len(cards)})"',
-            f'exampleItem: "{example}"',
-            '*/',
-            f'#define VAR_CARDCORE_{macro}_STYLE \\',
-            '  hidden = false;\\',
-            f'  textColor = "{COLORS[tier]}";\\',
-            f'  borderColor = "{COLORS[tier]}";\\',
-            f'  showLootbeam = {str(LOOTBEAM[tier]).lower()};\\',
-            f'  notify = {str(NOTIFY[tier]).lower()};\\',
-            '  showValue = true;\\',
-            '  menuSort = 100;',
-            '',
-            f'#define CONST_CARDCORE_{macro}_IDS [{",".join(map(str, ids))}]',
-            f'rule (id:CONST_CARDCORE_{macro}_IDS) {{ VAR_CARDCORE_{macro}_STYLE }}',
-            '',
-        ]
+    for category_id, label in CATEGORIES:
+        cards = [item for item in obtained if classify(item) == category_id]
+        lines += style_lines("OBTAINED", category_id, label, cards, True)
 
-    return "\n".join(lines) + "\n", {
+    lines += [
+        '/*@ define:module:cardcore_missing',
+        '---',
+        'name: "Cardcore: Missing Cards"',
+        'subtitle: "Optionally style ground items whose cards have not been obtained"',
+        'enabled: false',
+        'description: |',
+        f'  - Missing item cards: {len(missing)}',
+        '  Missing-card rules use the same classifications as Obtained Cards.',
+        '  Each classification contains canonical item IDs and catalog variants.',
+        '*/',
+        '',
+    ]
+
+    for category_id, label in CATEGORIES:
+        cards = [item for item in missing if classify(item) == category_id]
+        lines += style_lines("MISSING", category_id, label, cards, False)
+
+    return "\n".join(lines).rstrip() + "\n", {
         "catalogItemCards": len(items),
         "ownedItemCards": len(owned),
         "missingItemCards": len(missing),
         "ignoredNpcEntries": npc_ignored,
         "unresolvedEntries": unresolved,
         "missingByTier": {tier: len([item for item in missing if item.get("tcg", {}).get("tierLabel") == tier]) for tier in TIERS},
+        "obtainedByClassification": {label: len([item for item in obtained if classify(item) == category_id]) for category_id, label in CATEGORIES},
+        "missingByClassification": {label: len([item for item in missing if classify(item) == category_id]) for category_id, label in CATEGORIES},
     }
 
 

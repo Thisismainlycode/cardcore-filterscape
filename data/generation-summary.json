@@ -26,5 +26,43 @@
     "Rare": 420,
     "Uncommon": 515,
     "Common": 736
+  },
+  "obtainedByClassification": {
+    "Currency": 20,
+    "Teleports": 2,
+    "Food and Potions": 64,
+    "Clues and Uniques": 256,
+    "Slayer and PvM": 6,
+    "Runes and Magic": 41,
+    "Seeds and Farming": 42,
+    "Herbs and Herblore": 39,
+    "Ores and Bars": 23,
+    "Logs and Planks": 31,
+    "Prayer": 31,
+    "Fletching": 60,
+    "Crafting Materials": 41,
+    "Weapons and Ammunition": 145,
+    "Armour and Equipment": 362,
+    "Tools and Skilling": 204,
+    "Miscellaneous": 216
+  },
+  "missingByClassification": {
+    "Currency": 10,
+    "Teleports": 2,
+    "Food and Potions": 54,
+    "Clues and Uniques": 395,
+    "Slayer and PvM": 7,
+    "Runes and Magic": 54,
+    "Seeds and Farming": 82,
+    "Herbs and Herblore": 58,
+    "Ores and Bars": 25,
+    "Logs and Planks": 45,
+    "Prayer": 50,
+    "Fletching": 60,
+    "Crafting Materials": 49,
+    "Weapons and Ammunition": 243,
+    "Armour and Equipment": 516,
+    "Tools and Skilling": 269,
+    "Miscellaneous": 274
   }
 }
