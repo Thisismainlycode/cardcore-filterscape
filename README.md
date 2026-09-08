@@ -15,6 +15,8 @@ Use the public builder at **https://thisismainlycode.github.io/cardcore-filtersc
 NPC cards are deliberately excluded. The generated filter only contains OSRS ground-item IDs.
 
 The builder runs entirely in the browser and does not store pasted collection data.
+It deliberately does not request the OSRS TCG API directly: users open their solo or
+group data URL, copy the response, and paste it into the builder.
 
 Before opening or downloading a filter, users can choose one of three designs:
 
@@ -42,11 +44,17 @@ The modules also include 116 Cardcore-compatible individual item styles drawn fr
 the public `p8pw9l` reference filter. FilterScape displays these only for relevant
 items and exposes them as separate style controls.
 
-## Collection difference
+## Group member lists
 
-The builder can compare two solo or group collection exports. It returns items found
-in the second collection but missing from the first as a comma-separated Ground Items
-list, including catalog variants.
+One imported group collection is automatically separated using the owner attached to
+each card copy. The builder provides a comma-separated Ground Items list for every
+member, including catalog variants.
+
+### Cardcore: Item Ownership
+
+This FilterScape module contains an **Ironman mode - only show your items** toggle.
+It is off by default. When enabled, a terminal ownership rule hides every ground item
+whose ownership state is not `OWNERSHIP_SELF`.
 
 Both modules contain exclusive classifications inspired by the Iron Filter:
 

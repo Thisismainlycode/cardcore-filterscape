@@ -1,3 +1,23 @@
+/*@ define:module:cardcore_ownership
+---
+name: "Cardcore: Item Ownership"
+subtitle: "Optional Ironman visibility control"
+description: |
+  Enable this to show only items owned by you.
+*/
+
+/*@ define:input:cardcore_ownership
+type: boolean
+label: "Ironman mode - only show your items"
+*/
+#define VAR_CARDCORE_ONLY_SELF false
+
+rule (VAR_CARDCORE_ONLY_SELF && !ownership:OWNERSHIP_SELF) {
+  hidden = true;
+  notify = false;
+  showLootbeam = false;
+}
+
 /*@ define:module:cardcore_overrides
 ---
 name: "Cardcore: Manual Overrides"
