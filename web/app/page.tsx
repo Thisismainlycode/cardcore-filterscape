@@ -214,6 +214,7 @@ export function makeFilter(r: Result, referenceStyles: ReferenceStyle[] = [], de
 export const createFilter = (result: Result, referenceStyles: ReferenceStyle[] = [], design: Design = 'colorful') =>
   makeFilter(result, referenceStyles, design)
     .replaceAll('\n++ ', '\n  ')
+    .replaceAll('\n+', '\n')
     .normalize('NFKD')
     .replace(/[^\x00-\x7F]/g, '');
 export default function Home() {
